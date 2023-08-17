@@ -1,0 +1,23 @@
+# 特定のコマンドを打ったら読み込む
+[[plugins]]
+repo = "Eandrju/cellular-automaton.nvim"
+on_cmd = ["CellularAutomaton"]
+#:CellularAutomaton make_it_rain
+#:CellularAutomaton game_of_life
+
+[[plugins]]
+repo = "attn/vim-maketable"
+#on_cmd = ["\'<,\'>MakeTable", "\'<,\'>MakeTable!", "\'<,\'>MakeTable! \t", "UnmakeTable"]
+
+[[plugins]]
+repo = "previm/previm"
+on_cmd = ["PrevimOpen"]
+
+[[plugins]]
+repo = "tyru/open-browser.vim"
+on_cmd = ["PrevimOpen"]
+on_map = ["<Plug>(openbrowser-smart-search)"]
+
+[[plugins]]
+repo = "skanehira/translate.vim"
+on_cmd = ["Translate"]

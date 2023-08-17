@@ -1,0 +1,18 @@
+= nvim-treesitter
+		:TSInstall c css dockerfile fish go html json json5 jsonc markdown python rust help lua vim
+
+= packer.nvim
+	* PackerSync::
+		PackerClean の後に PackerUpdate を行う。
+	* PackerInstall::
+		プラグインをインストールする。
+	* PackerUpdate::
+		追加されたプラグインをインストールし、既存のものは更新する。
+	* PackerClean::
+		必要なくなったプラグインを削除する。
+	* PackerCompile::
+		設定ファイルを「コンパイル」する。
+
+= cellular-automaton.nvim
+	:CellularAutomaton make_it_rain
+	:CellularAutomaton game_of_life

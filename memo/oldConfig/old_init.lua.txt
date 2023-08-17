@@ -1,0 +1,175 @@
+init.vimをinit.lua化しようとしたやつ。
+一から分割したほうが良さげだったのでそちらに切り替えた。
+変換できていない記述多数。
+
+-- インストールコマンド
+-- :call dein#install()
+-- :TSInstall c css dockerfile fish go html json json5 jsonc markdown python rust help lua vim
+-- インストール情報 :TSInstallInfo
+
+
+
+-- Tabキーのインデント関係
+vim.opt.tabstop = 4                -- インデントの表示をスペース4文字に
+vim.opt.shiftwidth = 4             -- インデントの増減もスペース4文字に
+	-- vim.opt.expandtab = true   -- Tabキーをスペースに
+
+-- エンコード
+vim.opt.encoding=utf-8             -- バッファで表示する文字コード
+vim.opt.fileencoding=utf-8         -- 保存する文字コード
+vim.opt.fileencodings=utf-8,utf-16 -- 読み込む文字コード utf-8 -> utf-16
+vim.opt.fileformats=unix,dos,mac   -- 改行コード unix -> dos -> mac
+
+-- editor setting
+vim.opt.number                     -- 行番号表示
+vim.opt.showcmd                    -- 入力中のコマンドをステータスに表示
+vim.opt.splitbelow                 -- 水平分割時、下に表示
+vim.opt.splitright                 -- 縦分割時、右に表示
+	-- vim.opt.equalalways  = false -- 分割時に自動調整を無効化
+vim.opt.wildmenu  = true           -- コマンドモードの補完
+vim.opt.smartindent  = true        -- スマートインデントを行う
+vim.opt.clipboard = "unnamedplus"  -- yank&put に、クリップボードを利用
+vim.opt.laststatus=2                       -- スタートライン表示
+syntax enable                          -- シンタックスハイライトの有効化
+vim.opt.helplang=ja                        -- プラグイン導入の上で日本語化
+
+-- temporary file setting
+--vim.opt.noundofile                         -- undofileを作らない
+--vim.opt.noswapfile                         -- swapfileを作らない
+
+-- cursor setting
+vim.opt.ruler                              -- カーソルの位置表示
+vim.opt.cursorline                         -- カーソルハイライト
+
+-- search setting
+vim.opt.hlsearch                           -- 検索ハイライトを有効化
+vim.opt.incsearch                          -- インクリメントサーチ(入力しながら検索)
+
+-- tab setting
+vim.opt.expandtab                          -- tabを複数のspaceに置き換え
+vim.opt.tabstop=4                          -- tabは半角4文字
+vim.opt.shiftwidth=4                       -- tabの幅
+
+
+
+-- keymap(shortcut)
+nnoremap <Esc><Esc> :nohlsearch<CR>    -- Escキー をタブルクリックで、ハイライト削除
+nnoremap <C-s> :w<CR>                  -- Ctrl + S で書き込み
+inoremap <C-s> <ESC>:w<CR>             -- Ctrl + S で書き込み
+
+
+
+
+-- undoの永続化
+-- Windowsならexpandを C:/Users/yorugo/.vim/undo に。
+-- Ubuntuならexpandを /mnt/c/Users/yorugo/.vim/undo に。
+-- OS毎にディレクトリを分ける。
+if has('persistent_undo')
+--	let undo_path = expand('C:/Users/yorugo/.vim/undo')
+	let undo_path = expand('/mnt/c/wslu/.vim/undo')
+--	let undo_path = expand('/mnt/c/Users/yorugo/.vim/undo')
+	exe 'vim.opt.undodir=' .. undo_path
+	vim.opt.undofile
+endif
+
+
+
+-- open-browser.vim
+--let g:netrw_nogx = 1 -- disable netrw's gx mapping.
+nmap <C-j> <Plug>(openbrowser-smart-search)
+vmap <C-j> <Plug>(openbrowser-smart-search)
+
+
+
+-- Previm
+autocmd BufRead,BufNewFile *.{text,txt,md} vim.opt.filetype=markdown
+
+
+
+-- lua の設定
+function! CurrentLineInfo()
+lua << EOF
+
+-- filetype.vim(デフォルトのfiletype無効化)
+vim.g.did_load_filetypes = 1
+
+
+-- filetype.vim(デフォルトのfiletype無効化)
+vim.g.did_load_filetypes = 1
+
+
+-- nvim-treesitter(シンタックスハイライト プラグイン)
+-- 以下でインストールすること。
+-- :TSInstall c css dockerfile fish go html json json5 jsonc markdown python rust help lua vim
+-- インストール情報 :TSInstallInfo
+-- 導入 https://zenn.dev/duglaser/articles/c02d6a937a48df
+-- 公式 https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+require'nvim-treesitter.configs'.setup {
+	highlight = {
+		enable = true,  -- syntax highlightを有効にする
+		disable = {     -- 一部の言語では無効にする
+		}
+	},
+	indent = {
+	enable = true,
+	}
+}
+
+EOF
+endfunction
+-- ここまで lua
+
+
+-- dein.vim(プラグインマネージャ)
+-- :call dein#install() でインストールすること。
+-- Windowsならユーザーディレクトリを C:/Users/yorugo に。
+-- Ubuntuならユーザーディレクトリを /mnt/c/Users/yorugo に。
+-- OS毎にディレクトリを分ける。
+-- 必要なら各自編集、追記
+--deinの設定-----------------------
+--let s:dein_dir = 'C:/Users/yorugo/.cache/dein'
+let s:dein_dir = '/mnt/c/wslu/.cache/dein'
+--let s:dein_dir = '/mnt/c/Users/yorugo/.cache/dein'
+
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+    execute 'vim.opt.runtimepath^=' . s:dein_repo_dir
+endif
+
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
+
+--   let s:rc_dir = 'C:/Users/yorugo/.vim'
+   let s:rc_dir = '/mnt/c/wslu/.vim'
+--   let s:rc_dir = '/mnt/c/Users/yorugo/.vim'
+
+    if !isdirectory(s:rc_dir)
+        call mkdir(s:rc_dir, 'p')
+    endif
+    let s:toml = s:rc_dir . '/dein.toml'
+    let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
+
+    call dein#load_toml(s:toml, {'lazy': 0})
+    call dein#load_toml(s:lazy_toml, {'lazy' : 1})
+
+    call dein#end()
+    call dein#save_state()
+endif
+
+if dein#check_install()
+    call dein#install()
+endif
+
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+    call map(s:removed_plugins, "delete(v:val, 'rf')")
+--    call map(s:removed_plugins, "delete(v:val, 'rf')")
+    call dein#recache_runtimepath()
+endif
+
+filetype plugin indent on
+syntax enable

@@ -1,0 +1,10 @@
+# luaの高速化
+[[plugins]]
+repo = "lewis6991/impatient.nvim"
+
+[[plugins]]
+repo = "nvim-treesitter/nvim-treesitter"
+[[plugins]]
+repo = "vim-jp/vimdoc-ja"
+[[plugins]]
+repo = "wakatime/vim-wakatime"

@@ -1,0 +1,7 @@
+#[[plugins]]
+#repo = 'junegunn/fzf'
+#build_on = '''
+#./install -all
+#'''
+#[[plugins]]
+#repo = 'junegunn/fzf.vim'

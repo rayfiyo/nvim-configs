@@ -1,0 +1,4 @@
+cd /mnt/c/wslu/.local/share/nvim/site/pack/packer
+
+plugin/packer_compiled.lua は :PackerInstall で自動生成(正確には :PackerCompile)
+./lua/PlugsLua/コマンドメモ.txt
