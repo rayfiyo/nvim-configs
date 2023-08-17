@@ -5,11 +5,6 @@
 -- VimScriptの文字コード(マルチバイト文字の利用を有効化)
 vim.scriptencoding = "utf-8"
 
------ :Emo でデスクトップにmemo.txtを作成し、入力開始 -----
-vim.api.nvim_create_user_command("Notepad", function(opts)
-	vim.cmd("e " .. "/mnt/c/Users/yorugo/Desktop/memo.txt")
-end, {})
-
 ----- undoの永続化 -----
 if vim.fn.has('persistent_undo') == 1 then
 	local undo_path = vim.fn.expand("~/.cache/nvim/undo")	-- ~/を展開
@@ -29,7 +24,16 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	command = "PackerCompile",
 })
 
---[[ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+vim.api.nvim_set_option('clipboard', 'unnamedplus')
+
+--[[
+----- :Emo でデスクトップにmemo.txtを作成し、入力開始 -----
+vim.api.nvim_create_user_command("Notepad", function(opts)
+	vim.cmd("e " .. "/mnt/c/Users/yorugo/Desktop/memo.txt")
+end, {})
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = { "1packer_nvim.lua" },
 	command = "PackerCompile",
-}) ]]
+})
+]]

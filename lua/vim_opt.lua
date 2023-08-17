@@ -23,10 +23,13 @@ local opt = {
 	splitbelow=true,
 	splitright=false,
 
-	clipboard="unnamedplus",
+	-- clipboard="unnamedplus",
 	swapfile=false,
 }
 
 for i, v in pairs(opt) do
 	vim.opt[i] = v
 end
+
+-- https://blog.atusy.net/2022/02/21/nvim-init-lua/
+vim.opt.clipboard:append{'unnamedplus'}
