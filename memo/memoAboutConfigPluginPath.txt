@@ -1,4 +1,11 @@
+2023年10月15日
+:Lazy sync
+でいける
+
+---
+
 cd /mnt/c/wslu/.local/share/nvim/site/pack/packer
 
+2023年6月19日
 plugin/packer_compiled.lua は :PackerInstall で自動生成(正確には :PackerCompile)
 ./lua/PlugsLua/コマンドメモ.txt
