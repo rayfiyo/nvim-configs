@@ -5,9 +5,9 @@ local opts = {
     rtp = {
       disabled_plugins = {
         -- コメントアウトすると enabled ( !disable になる)
-        "gzip",
+        -- "gzip",
         "matchit",
-        -- "matchparen",
+        "matchparen",
         "netrwPlugin",
         "tarPlugin",
         "tohtml",
@@ -39,7 +39,6 @@ local plugins = {
 	{"lewis6991/impatient.nvim"},
 	{"vim-jp/vimdoc-ja"},
 	{"wakatime/vim-wakatime"},
-	{"github/copilot.vim"},
 
 	-- 遅延
 	{"Eandrju/cellular-automaton.nvim",
@@ -50,6 +49,11 @@ local plugins = {
 			{"v", "<leader>r"},
 		},
 	},
+	{"github/copilot.vim",
+		lazy = true,
+		build = [[:Copilot setup]],
+		cmd = "Copilot",
+	},
 	{"mattn/vim-maketable",
 		lazy = true,
 		cmd = {
@@ -58,6 +62,7 @@ local plugins = {
 		},
 	},
 	{"neovim/nvim-lspconfig",
+		lazy = true,
 		ft = "go",
 		build = function() require("lspconfig").gopls.setup{} end,
 	},
@@ -102,8 +107,11 @@ require('lazy').setup(plugins, opts)
 	keys = {"v", "<CR>"},
 == when the plugin loads (依存関係)
 	dependencies = "repo",
-= init: always executed during startup
-== build (when a plugin is installed or updated) ]]
+== init: always executed during startup
+	init = function() require("scrollview").setup{
+		excluded_filetypes = {"nerdtree"},
+	} end,
+== build: when a plugin is installed or updated ]]
 --	vim:  build = [[:GlowInstall]],
 --	bash: build = [[npm install]],
 
