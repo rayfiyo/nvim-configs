@@ -44,10 +44,10 @@ local plugins = {
 	{"Eandrju/cellular-automaton.nvim",
 		lazy = true,
 		cmd = "CellularAutomaton",
-		keys = {
-			{"n", "<leader>r"},
-			{"v", "<leader>r"},
-		},
+		keys = "<leader>r",
+			--次に見たら削除 2023年10月30日
+			--{"n", "<leader>r"},
+			--{"v", "<leader>r"},
 	},
 	{"github/copilot.vim",
 		lazy = true,
@@ -56,12 +56,13 @@ local plugins = {
 	},
 	{"mattn/vim-maketable",
 		lazy = true,
+		cmd = "MakeTable",
 		cmd = {
 			"MakeTable",
-			"UnmakeTable"
+			"UnmakeTable",
 		},
 	},
-	{"neovim/nvim-lspconfig",
+    {"neovim/nvim-lspconfig",
 		lazy = true,
 		ft = "go",
 		build = function() require("lspconfig").gopls.setup{} end,
@@ -69,25 +70,26 @@ local plugins = {
 	{"previm/previm",
 		lazy = true,
 		cmd = "PrevimOpen",
-		keys = {
-			{"n", "<C-p>"},
-			{"v", "<C-p>"},
-		},
+		keys = "<C-p>",
+			--次に見たら削除 2023年10月30日
+			--{"n", "<C-p>"},
+			--{"v", "<C-p>"},
 		dependencies = "tyru/open-browser.vim",
 	},
 	{"skanehira/translate.vim",
 		lazy = true,
 		cmd = "Translate",
-		keys = 
-			{"n", "<Leader>t"},
-			{"v", "<Leader>t"},
+		keys = "<leader>t",
+			--次に見たら削除 2023年10月30日
+			--{"n", "<leader>t"},
+			--{"v", "<leader>t"},
 	},
 	{"tyru/open-browser.vim",
 		lazy = true,
-		keys = {
-			{"n", "<Leader><C-l>"},
-			{"v", "<Leader><C-l>"},
-		},
+		keys = "<leader><C-l>",
+			--次に見たら削除 2023年10月30日
+			--{"n", "<leader><C-l>"},
+			--{"v", "<leader><C-l>"},
 	},
 }
 
@@ -117,7 +119,7 @@ require('lazy').setup(plugins, opts)
 
 --[[
 = usage
-== key mappings
+== key mappings (モード指定すると副作用あり)
 	keys = {
 		{"n", "<CR>"},
 		{"v", "<CR>"},
