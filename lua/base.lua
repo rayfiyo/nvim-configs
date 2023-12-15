@@ -13,9 +13,9 @@ vim.scriptencoding = "utf-8"
 
 --- undoの永続化 ---
 if vim.fn.has("persistent_undo") == 1 then
-	local undo_path = vim.fn.expand("~/.cache/nvim/undo") -- ~/を展開
-	vim.opt.undodir = undo_path
-	vim.opt.undofile = true -- undoのfileを有効化
+    local undo_path = vim.fn.expand("~/.cache/nvim/undo") -- ~/を展開
+    vim.opt.undodir = undo_path
+    vim.opt.undofile = true -- undoのfileを有効化
 end
 
 --- python3のpath追加（clang-formatで必要） ---

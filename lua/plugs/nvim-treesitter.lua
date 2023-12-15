@@ -5,11 +5,11 @@
 -- 導入 https://zenn.dev/duglaser/articles/c02d6a937a48df
 -- 公式 https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
 require'nvim-treesitter.configs'.setup {
-	highlight = {
-		enable = true,  -- syntax highlightを有効にする
-		additional_vim_regex_highlighting = true,
-	},
-	indent = {
-	enable = true,
-	}
+    highlight = {
+        enable = true,  -- syntax highlightを有効にする
+        additional_vim_regex_highlighting = true,
+    },
+    indent = {
+    enable = true,
+    }
 }

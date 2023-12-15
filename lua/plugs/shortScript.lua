@@ -4,8 +4,8 @@ vim.opt.helplang = ja
 -- 保存時にフォーマット
 -- https://zenn.dev/knsh14/articles/nvim-gopls-2021-01-16
 vim.api.nvim_create_autocmd('BufWritePre', {
-	pattern = '*',
-	callback = function() vim.lsp.buf.format { async = true } end
+    pattern = '*',
+    callback = function() vim.lsp.buf.format { async = true } end
 })
 
 -- previm/previm
