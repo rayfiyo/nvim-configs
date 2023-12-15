@@ -1,11 +1,11 @@
 local map = vim.keymap.set
 --[[ memo: 基本noremap、<Plug>時map、Lua関数可
-	command_mode:      "c"
-	insert_mode:       "i"
-	normal_mode:       "n"
-	term_mode:         "t"
-	visual_mode:       "v"
-	visual_block_mode: "x" ]]
+    command_mode:      "c"
+    insert_mode:       "i"
+    normal_mode:       "n"
+    term_mode:         "t"
+    visual_mode:       "v"
+    visual_block_mode: "x" ]]
 
 --- normal keymap ---
 vim.g.mapleader = " " -- リーダーキーを スペース に
@@ -26,7 +26,7 @@ map({ "i", "n" }, "<C-f>", "<C-x><C-o>") -- オムニ補完
 -- Eandrju/cellular-automaton.nvim
 map({ "n", "v" }, "<leader>m", ":CellularAutomaton make_it_rain<Return>")
 -- mhartington/formatter.nvim
---map({"n", "v"}, "<leader>f", ":FormatWrite<Return>")
+--map({"n", "v"}, "<leader>f", ":Format<Return>")
 -- previm/previm
 map({ "n", "v" }, "<C-p>", ":PrevimOpen<Return>")
 -- skanehira/translate.vim
