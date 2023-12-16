@@ -50,7 +50,7 @@ local plugins = {
         "Eandrju/cellular-automaton.nvim",
         lazy = true,
         cmd = "CellularAutomaton",
-        keys = "<leader>r",
+        --keys = "<leader>r",
         --次に見たら削除 2023年10月30日
         --{"n", "<leader>r"},
         --{"v", "<leader>r"},
@@ -60,7 +60,7 @@ local plugins = {
         "MakeTable",
         "UnmakeTable",
     } },
-    { "mhartington/formatter.nvim", lazy = true, keys = "<leader>f", cmd = {
+    { "mhartington/formatter.nvim", lazy = true, cmd = {
         "Format",
         "FormatWrite",
     } },
@@ -76,7 +76,7 @@ local plugins = {
         "previm/previm",
         lazy = true,
         cmd = "PrevimOpen",
-        keys = "<C-p>",
+        --keys = "<C-p>",
         --次に見たら削除 2023年10月30日
         --{"n", "<C-p>"},
         --{"v", "<C-p>"},
@@ -86,7 +86,7 @@ local plugins = {
         "skanehira/translate.vim",
         lazy = true,
         cmd = "Translate",
-        keys = "<leader>t",
+        --keys = "<leader>t",
         --次に見たら削除 2023年10月30日
         --{"n", "<leader>t"},
         --{"v", "<leader>t"},
@@ -105,6 +105,9 @@ require("lazy").setup(plugins, opts)
 
 -- https://github.com/folke/lazy.nvim#-plugin-spec
 --[[
+
+key は指定すると失敗するかも！！
+
 = Lazy-load: If conditions match, run
 == vim cmd
     cmd = {":avim", ":bstart"},
