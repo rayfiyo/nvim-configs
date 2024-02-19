@@ -1,17 +1,20 @@
 local map = vim.keymap.set
---[[ memo<cmd> 基本noremap、<Plug>時map、Lua関数可
-    command_mode<cmd>      "c"
-    insert_mode<cmd>       "i"
-    normal_mode<cmd>       "n"
-    term_mode<cmd>         "t"
-    visual_mode<cmd>       "v"
-    visual_block_mode<cmd> "x" ]]
+--[[ 基本noremap、<Plug>時map、Lua関数可
+    command_mode      "c"
+    insert_mode       "i"
+    normal_mode       "n"
+    term_mode         "t"
+    visual_mode       "v"
+    visual_block_mode "x"
+
+    noremap ではない（素のvimのではない）
+    {remap = true}            ]]
 
 --- normal keymap ---
 vim.g.mapleader = " " -- リーダーキーを スペース に
 vim.g.maplocalleader = " " -- リーダーキーを スペース に
 map("n", "<ESC><ESC>", "<cmd>noh<CR>") -- Escキー をタブルクリックで、ハイライト削除
-map({ "i", "v", "x" }, "<C-c>", "yy") -- C-c でコピー
+-- map({ "i", "v", "x" }, "<C-c>", '"0y') -- C-c でコピー
 map("n", "！", "!") -- <cmd>wq！用
 map("n", "っd", "dd") -- 全角・半角間違い用
 map("n", "っy", "yy") -- 全角・半角間違い用
@@ -31,5 +34,7 @@ map({ "n", "v" }, "<leader>f", "<cmd>Format<CR>")
 map({ "n", "v" }, "<C-p>", "<cmd>PrevimOpen<CR>")
 -- skanehira/translate.vim
 map({ "n", "v" }, "<leader>t", "<cmd>Translate<CR>")
+-- tpope/vim-commentary
+map({ "n", "v", "i" }, "<C-_>", "gcc", { remap = true })
 -- tyru/open-browser.vim
 map({ "n", "v" }, "<leader><C-l>", "<Plug>(openbrowser-smart-search)")
