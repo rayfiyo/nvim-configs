@@ -1,10 +1,6 @@
 -- "vim.opt.*" 以外の設定
 -- https://zenn.dev/hisasann/articles/neovim-settings-to-lua
 
--- Luaファイルをバイトコンパイルしてキャッシュする
--- https://coralpink.github.io/commentary/outro/lazy.html#admonition-news-09
-vim.loader.enable()
-
 --- ヤンクをクリップボードに対応 ---
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 

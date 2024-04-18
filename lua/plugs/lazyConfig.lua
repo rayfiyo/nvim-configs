@@ -1,3 +1,7 @@
+-- Luaファイルをバイトコンパイルしてキャッシュする
+-- https://coralpink.github.io/commentary/outro/lazy.html#admonition-news-09
+vim.loader.enable()
+
 -- defaults configuration
 -- https://coralpink.github.io/commentary/outro/lazy.html
 local opts = {
@@ -18,7 +22,7 @@ local opts = {
 	},
 }
 
--- plugin configuration ((Based on migration from packer.nvim))
+-- plugin configuration (Based on migration from packer.nvim)
 -- https://coralpink.github.io/commentary/outro/lazy-migration-guide.html
 local plugins = {
 	-- 起動と同時
@@ -45,8 +49,6 @@ local plugins = {
 		"ray-x/go.nvim",
 		dependencies = { -- optional packages
 			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
 			require("go").setup()
@@ -86,6 +88,7 @@ local plugins = {
 	{
 		"neovim/nvim-lspconfig",
 		lazy = true,
+		--[[
 		build = function()
 			-- require("lspconfig").gopls.setup({})
 			require("lspconfig").gopls.setup({
@@ -96,6 +99,7 @@ local plugins = {
 				},
 			})
 		end,
+        ]]
 	},
 	{
 		"previm/previm",

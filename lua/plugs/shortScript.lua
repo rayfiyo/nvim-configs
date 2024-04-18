@@ -1,19 +1,26 @@
 -- 日本語化プラグインの設定
 vim.opt.helplang = ja
 
--- 保存時にフォーマット
--- https://zenn.dev/knsh14/articles/nvim-gopls-2021-01-16
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function()
-		vim.lsp.buf.format({ async = true })
-	end,
-})
+-- 変数宣言
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
 -- previm/previm
 -- autocmd BufRead,BufNewFile *.{text,txt,md} vim.opt.filetype=markdown
+autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.text", "*.txt", "*.md" },
+	command = ":PrevimOpen",
+})
 
--- williamboman/mason.nvim
+-- mhartington/formatter.nvim の書き込み時に自動フォーマット
+-- https://github.com/mhartington/formatter.nvim#format-after-save
+augroup("__formatter__", { clear = true })
+autocmd("BufWritePost", {
+	group = "__formatter__",
+	command = ":FormatWrite",
+})
+
+-- williamboman/mason.nvim の ui 変更
 require("mason").setup({
 	ui = {
 		icons = {
@@ -23,15 +30,3 @@ require("mason").setup({
 		},
 	},
 })
-
---[[ 設定だるかったので消したフォーマッタ
--- mhartington/formatter.nvim の書き込み時に自動フォーマット
--- https://github.com/mhartington/formatter.nvim#format-after-save
--- https://uhoho.hatenablog.jp/entry/2023/05/18/063603
-vim.api.nvim_create_augroup("FormatAutogroup", { clear = true })
-vim.api.nvim_create_autocmd({"BufWritePost"}, {
-  pattern = "*",
-  group = "FormatAutogroup",
-  command = "FormatWrite",
-})
-]]
