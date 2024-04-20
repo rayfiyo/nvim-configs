@@ -10,12 +10,12 @@ local opts = {
 			disabled_plugins = {
 				-- コメントアウトすると enabled ( !disable になる)
 				-- "gzip",
-				"matchit",
-				"matchparen",
-				"netrwPlugin",
+				-- "matchit",
+				-- "matchparen",
+				-- "netrwPlugin",
 				-- "tarPlugin",
-				"tohtml",
-				"tutor",
+				-- "tohtml",
+				-- "tutor",
 				-- "zipPlugin",
 			},
 		},
@@ -41,8 +41,25 @@ local plugins = {
 		end,
 	},
 	{
+		-- https://zenn.dev/duglaser/articles/c02d6a937a48df
+		-- https://konnyakmannan.com/archives/neovim_treesitter_setup_on_windows11/
+		-- 対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+		-- :TSInstall c css dockerfile fish go html json json5 jsonc markdown lua vim
 		"nvim-treesitter/nvim-treesitter",
-		build = [[:TSInstall c css dockerfile fish go html json json5 jsonc markdown python rust help lua vim]],
+
+		build = ":TSUpdate",
+
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				auto_install = false,
+				highlight = {
+					enable = true,
+
+					-- vモードは，デフォルトのシンタックスハイライト
+					additional_vim_regex_highlighting = true,
+				},
+			})
+		end,
 	},
 	{ "lewis6991/impatient.nvim" },
 	{
@@ -88,36 +105,22 @@ local plugins = {
 	{
 		"neovim/nvim-lspconfig",
 		lazy = true,
-		--[[
-		build = function()
-			-- require("lspconfig").gopls.setup({})
-			require("lspconfig").gopls.setup({
-				settings = {
-					gopls = {
-						gofumpt = true,
-					},
-				},
-			})
-		end,
-        ]]
 	},
 	{
 		"previm/previm",
 		lazy = true,
-		cmd = "PrevimOpen",
-		--keys = "<C-p>",
+		ft = "markdown",
 		dependencies = "tyru/open-browser.vim",
 	},
 	{
 		"skanehira/translate.vim",
 		lazy = true,
 		cmd = "Translate",
-		--keys = "<leader>t",
 	},
-	{ -- 行単位のコメントアウト
+	{
 		"tpope/vim-commentary",
 		lazy = true,
-		keys = { "gcc", "gc", "gcap", "<C-l>/" },
+		keys = { "gcc", "gc", "gcap" },
 	},
 	{
 		"tyru/open-browser.vim",

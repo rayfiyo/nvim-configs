@@ -35,7 +35,7 @@ require("formatter").setup({
 		vue = { require("formatter.filetypes.vue").prettierd },
 
 		-- その他
-		["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },
+		-- ["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },
 	},
 })
 

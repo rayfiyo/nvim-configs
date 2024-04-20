@@ -7,9 +7,9 @@
 require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true, -- syntax highlightを有効にする
-		additional_vim_regex_highlighting = true, -- vモードのとき？に，デフォルトシンタックスハイライトで表示
+		additional_vim_regex_highlighting = true, -- vモードは，デフォルトのシンタックスハイライト
 	},
 	indent = {
-		enable = true,
+		enable = false,
 	},
 })
