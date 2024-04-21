@@ -1,15 +1,14 @@
 require("base")
 require("vim_opt")
-require("keymaps")
 
 require("initLazy")
 require("plugs/lazyConfig")
 
 require("plugs/enableLSP")
-require("plugs/keymaps-LSP")
-require("plugs/scripts")
 require("plugs/formatter")
+require("plugs/keymapsLSP")
+-- require("plugs/nvim-treesitter")
+require("plugs/plugsKeymaps")
+require("plugs/scripts")
 
 require("impatient")
-
--- require("plugs/nvim-treesitter")

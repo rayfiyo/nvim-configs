@@ -2,30 +2,32 @@
 -- https://coralpink.github.io/commentary/outro/lazy.html#admonition-news-09
 vim.loader.enable()
 
--- defaults configuration
+-- defaults configuration --
 -- https://coralpink.github.io/commentary/outro/lazy.html
 local opts = {
 	performance = {
 		rtp = {
 			disabled_plugins = {
 				-- コメントアウトすると enabled ( !disable になる)
-				-- "gzip",
-				-- "matchit",
-				-- "matchparen",
-				-- "netrwPlugin",
-				-- "tarPlugin",
-				-- "tohtml",
-				-- "tutor",
-				-- "zipPlugin",
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
 			},
 		},
 	},
 }
 
--- plugin configuration (Based on migration from packer.nvim)
+-- plugin configuration (Based on migration from packer.nvim) --
 -- https://coralpink.github.io/commentary/outro/lazy-migration-guide.html
 local plugins = {
-	-- 起動と同時
+	--------------------------------------------------------
+	----------------------- 通常起動 -----------------------
+	--------------------------------------------------------
 	{
 		"dstein64/nvim-scrollview",
 		init = function()
@@ -61,10 +63,12 @@ local plugins = {
 			})
 		end,
 	},
-	{ "lewis6991/impatient.nvim" },
+	{
+		"lewis6991/impatient.nvim",
+	},
 	{
 		"ray-x/go.nvim",
-		dependencies = { -- optional packages
+		dependencies = {
 			"ray-x/guihua.lua",
 		},
 		config = function()
@@ -74,8 +78,12 @@ local plugins = {
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
-	{ "vim-jp/vimdoc-ja" },
-	{ "wakatime/vim-wakatime" },
+	{
+		"vim-jp/vimdoc-ja",
+	},
+	{
+		"wakatime/vim-wakatime",
+	},
 	{
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
@@ -86,22 +94,37 @@ local plugins = {
 		end,
 	},
 
-	-- 遅延
+	--------------------------------------------------------
+	----------------------- 遅延起動 -----------------------
+	--------------------------------------------------------
 	{
 		"Eandrju/cellular-automaton.nvim",
 		lazy = true,
 		cmd = "CellularAutomaton",
 		--keys = "<leader>r",
 	},
-	{ "github/copilot.vim", lazy = true, build = [[:Copilot setup]], cmd = "Copilot" },
-	{ "mattn/vim-maketable", lazy = true, cmd = {
-		"MakeTable",
-		"UnmakeTable",
-	} },
-	{ "mhartington/formatter.nvim", lazy = true, cmd = {
-		"Format",
-		"FormatWrite",
-	} },
+	{
+		"github/copilot.vim",
+		lazy = true,
+		build = [[:Copilot setup]],
+		cmd = "Copilot",
+	},
+	{
+		"mattn/vim-maketable",
+		lazy = true,
+		cmd = {
+			"MakeTable",
+			"UnmakeTable",
+		},
+	},
+	{
+		"mhartington/formatter.nvim",
+		lazy = true,
+		cmd = {
+			"Format",
+			"FormatWrite",
+		},
+	},
 	{
 		"neovim/nvim-lspconfig",
 		lazy = true,
@@ -121,11 +144,6 @@ local plugins = {
 		"tpope/vim-commentary",
 		lazy = true,
 		keys = { "gcc", "gc", "gcap" },
-	},
-	{
-		"tyru/open-browser.vim",
-		lazy = true,
-		keys = "<leader><C-l>",
 	},
 }
 
