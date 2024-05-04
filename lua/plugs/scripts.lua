@@ -23,6 +23,12 @@ require("mason").setup({
 	},
 })
 
+-- tpope/vim-commentary が Typst でも動作するように設定
+autocmd("FileType", {
+	command = "",
+	vim.opt_local.commentstring:append("// %s"),
+})
+
 -- previm/previm ファイル開く度に立ち上がるのが意外と不便だったので廃止
 -- autocmd BufRead,BufNewFile *.{text,txt,md} vim.opt.filetype=markdown
 --[[

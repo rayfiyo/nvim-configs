@@ -1,5 +1,5 @@
 -- https://github.com/mhartington/formatter.nvim#configure
--- ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/default
+-- ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/
 
 -- 設定（configurations）生成ユーティリティ
 local util = require("formatter.util")
@@ -12,17 +12,17 @@ require("formatter").setup({
 
 	-- すべてのフォーマッタ設定はオプトイン（書かないとならない）
 	-- Mason で インストールして，こちらでファイルタイプと紐づけ
+	-- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
 	filetype = {
 
 		-- prettierd 以外
-		c = { require("formatter.filetypes.c").clangformat },
+		c = { require("formatter.filetypes.c").clang_format },
 		go = { require("formatter.filetypes.go").gofumpt },
 		lua = { require("formatter.filetypes.lua").stylua },
-		latex = {
-			require("formatter.filetypes.latex").latexindent,
-			require("formatter.filetypes.tex").latexindent,
-		},
+		svg = { require("formatter.filetypes.svg").xmlformatter },
+		typst = { require("formatter.filetypes.typst").typstfmt },
 		yaml = { require("formatter.filetypes.yaml").yamlfmt },
+		xml = { require("formatter.filetypes.xml").xmlformatter },
 
 		-- prettierd 使う
 		css = { require("formatter.filetypes.css").prettierd },

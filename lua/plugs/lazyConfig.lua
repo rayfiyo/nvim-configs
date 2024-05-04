@@ -46,7 +46,7 @@ local plugins = {
 		-- https://zenn.dev/duglaser/articles/c02d6a937a48df
 		-- https://konnyakmannan.com/archives/neovim_treesitter_setup_on_windows11/
 		-- 対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-		-- :TSInstall c css dockerfile fish go html json json5 jsonc markdown lua vim
+		-- :TSInstall bash c css dockerfile fish go html json json5 jsonc markdown lua vim
 		"nvim-treesitter/nvim-treesitter",
 
 		build = ":TSUpdate",
@@ -68,8 +68,10 @@ local plugins = {
 	},
 	{
 		"ray-x/go.nvim",
-		dependencies = {
+		dependencies = { -- optional packages
 			"ray-x/guihua.lua",
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
 			require("go").setup()
@@ -97,6 +99,15 @@ local plugins = {
 	--------------------------------------------------------
 	----------------------- 遅延起動 -----------------------
 	--------------------------------------------------------
+	{
+		"chomosuke/typst-preview.nvim",
+		lazy = true,
+		ft = "typst",
+		version = "0.1.*",
+		build = function()
+			require("typst-preview").update()
+		end,
+	},
 	{
 		"Eandrju/cellular-automaton.nvim",
 		lazy = true,

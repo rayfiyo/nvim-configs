@@ -3,8 +3,20 @@
 
 local lsp = require("lspconfig")
 lsp.clangd.setup({})
-lsp.gopls.setup({})
-lsp.texlab.setup({})
+lsp.gopls.setup({
+	settings = {
+		gopls = {
+			staticcheck = true,
+		},
+	},
+})
 lsp.html.setup({})
+lsp.texlab.setup({})
+lsp.typst_lsp.setup({
+	settings = {
+		exportPdf = "onType", -- Choose onType, onSave or never.
+		-- serverPath = "" -- Normally, there is no need to uncomment it.
+	},
+})
 
 -- lsp..setup{}

@@ -43,3 +43,10 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 
 -- python3のpath追加（clang-formatで必要）
 vim.g.python3_host_prog = "/usr/bin/python3"
+
+-- .typst の filetype を sql ではなく typst として認識
+vim.filetype.add({
+	extension = {
+		typ = "typst",
+	},
+})

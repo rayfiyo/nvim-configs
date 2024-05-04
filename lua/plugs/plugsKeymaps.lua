@@ -21,16 +21,17 @@ map({ "i", "n" }, "<C-f>", "<C-x><C-o>") -- オムニ補完
 -------------------
 -- plugin keymap --
 -------------------
+-- chomosuke/typst-preview.nvim
+map({ "n", "v" }, "<leader>o", "<cmd>TypstPreview<CR>")
 -- Eandrju/cellular-automaton.nvim
 map({ "n", "v" }, "<leader>m", "<cmd>CellularAutomaton make_it_rain<CR>")
 -- mhartington/formatter.nvim
 map({ "n", "v" }, "<leader>f", "<cmd>Format<CR>")
 -- previm/previm
-map({ "n", "v" }, "<C-p>", "<cmd>PrevimOpen<CR>")
+map({ "n", "v" }, "<leader>p", "<cmd>PrevimOpen<CR>")
 -- skanehira/translate.vim
 map({ "n", "v" }, "<leader>t", "<cmd>Translate<CR>")
 -- tpope/vim-commentary
 map({ "n", "v", "i" }, "<C-_>", "gcc", { remap = true })
 -- tyru/open-browser.vim
-map({ "n", "v" }, "<leader><C-l>", "<Plug>(openbrowser-smart-search)")
-
+-- map({ "n", "v" }, "<leader><C-l>", "<Plug>(openbrowser-smart-search)")
