@@ -1,5 +1,7 @@
--- https://github.com/mhartington/formatter.nvim#configure
--- ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/
+--[[
+https://github.com/mhartington/formatter.nvim#configure
+~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/
+]]
 
 -- 設定（configurations）生成ユーティリティ
 local util = require("formatter.util")
@@ -19,7 +21,7 @@ require("formatter").setup({
 		c = { require("formatter.filetypes.c").clang_format },
 		go = { require("formatter.filetypes.go").gofumpt },
 		lua = { require("formatter.filetypes.lua").stylua },
-		svg = { require("formatter.filetypes.svg").xmlformatter },
+		--svg = { require("formatter.filetypes.svg").xmlformatter },
 		typst = { require("formatter.filetypes.typst").typstfmt },
 		yaml = { require("formatter.filetypes.yaml").yamlfmt },
 		xml = { require("formatter.filetypes.xml").xmlformatter },
