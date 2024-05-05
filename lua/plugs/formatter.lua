@@ -21,10 +21,9 @@ require("formatter").setup({
 		c = { require("formatter.filetypes.c").clang_format },
 		go = { require("formatter.filetypes.go").gofumpt },
 		lua = { require("formatter.filetypes.lua").stylua },
-		--svg = { require("formatter.filetypes.svg").xmlformatter },
+		svg = { require("formatter.filetypes.svg").xmlformat },
 		typst = { require("formatter.filetypes.typst").typstfmt },
-		yaml = { require("formatter.filetypes.yaml").yamlfmt },
-		xml = { require("formatter.filetypes.xml").xmlformatter },
+		xml = { require("formatter.filetypes.xml").xmlformat },
 
 		-- prettierd 使う
 		css = { require("formatter.filetypes.css").prettierd },
@@ -35,6 +34,7 @@ require("formatter").setup({
 		markdown = { require("formatter.filetypes.markdown").prettierd },
 		typescript = { require("formatter.filetypes.typescript").prettierd },
 		vue = { require("formatter.filetypes.vue").prettierd },
+		yaml = { require("formatter.filetypes.yaml").prettierd },
 
 		-- その他
 		-- ["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },
