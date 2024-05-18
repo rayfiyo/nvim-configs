@@ -10,7 +10,7 @@ require("plugs/lsp")
 require("plugs/nvim-treesitter")
 require("plugs/scripts")
 
-require("keymaps/lsp")
 require("keymaps/plugs")
+require("keymaps/lsp")
 
 require("impatient")

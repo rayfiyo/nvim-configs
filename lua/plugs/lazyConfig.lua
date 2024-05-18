@@ -104,6 +104,11 @@ local plugins = {
 		lazy = true,
 		ft = "typst",
 		version = "0.1.*",
+		init = function()
+			require("typst-preview").setup({
+				open_cmd = '"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" %s',
+			})
+		end,
 		build = function()
 			require("typst-preview").update()
 		end,

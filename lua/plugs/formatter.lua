@@ -18,7 +18,7 @@ require("formatter").setup({
 	filetype = {
 
 		-- prettierd 以外
-		c = { require("formatter.filetypes.c").clang_format },
+		-- c = { require("formatter.filetypes.c").astyle },
 		go = { require("formatter.filetypes.go").gofumpt },
 		lua = { require("formatter.filetypes.lua").stylua },
 		svg = { require("formatter.filetypes.svg").xmlformat },
