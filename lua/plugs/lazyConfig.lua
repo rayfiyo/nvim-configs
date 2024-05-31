@@ -107,6 +107,7 @@ local plugins = {
 		init = function()
 			require("typst-preview").setup({
 				open_cmd = '"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" %s',
+				-- follow_cursor = false,
 			})
 		end,
 		build = function()
