@@ -7,7 +7,7 @@ require("plugs/lazyConfig")
 
 require("plugs/formatter")
 require("plugs/lsp")
-require("plugs/nvim-treesitter")
+require("plugs/treesitter")
 require("plugs/scripts")
 
 require("keymaps/plugs")
