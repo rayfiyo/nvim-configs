@@ -1,6 +1,14 @@
--- Luaファイルをバイトコンパイルしてキャッシュする
--- https://coralpink.github.io/commentary/outro/lazy.html#admonition-news-09
 vim.loader.enable()
+
+--[[ https://github.com/folke/lazy.nvim
+init: 起動時に常に実行．
+config: プラグインのロード時に実行．
+        optsかconfig = trueが設定されていれば，
+        自動的にrequire(MAIN).setup(opts)を実行．
+build: プラグインがインストールまたは更新されたときに実行．
+        文字列 は シェルコマンド．
+        先頭 : は Neovimコマンド．
+]]
 
 -- defaults configuration --
 -- https://coralpink.github.io/commentary/outro/lazy.html
@@ -21,6 +29,7 @@ local opts = {
 		},
 	},
 }
+---
 
 -- plugin configuration (Based on migration from packer.nvim) --
 -- https://coralpink.github.io/commentary/outro/lazy-migration-guide.html
@@ -43,22 +52,51 @@ local plugins = {
 		end,
 	},
 	{
-		-- https://zenn.dev/duglaser/articles/c02d6a937a48df
-		-- https://konnyakmannan.com/archives/neovim_treesitter_setup_on_windows11/
 		-- 対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-		-- :TSInstall bash c css dockerfile fish go html json json5 jsonc markdown lua vim
+		-- install: TSInstall bash c css dockerfile fish go html json json5 jsonc markdown lua vim
+		-- info:    :TSInstallInfo
+		-- 導入１: https://zenn.dev/duglaser/articles/c02d6a937a48df
+		-- 導入２: https://konnyakmannan.com/archives/neovim_treesitter_setup_on_windows11/
+		-- プラグインマネージャーは関係ない
+
 		"nvim-treesitter/nvim-treesitter",
 
 		build = ":TSUpdate",
 
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				auto_install = false,
 				highlight = {
+					-- syntax highlightを有効にする
 					enable = true,
 
 					-- vモードは，デフォルトのシンタックスハイライト
 					additional_vim_regex_highlighting = true,
+				},
+				indent = {
+					enable = true,
+				},
+
+				ensure_installed = {
+					"bibtex",
+					"c",
+					"css",
+					"dockerfile",
+					"fish",
+					"git_rebase",
+					"go",
+					"gomod",
+					"gosum",
+					"html",
+					"json",
+					"json5",
+					"jsonc",
+					"lua",
+					"markdown",
+					"markdown_inline",
+					"python",
+					"toml",
+					"typst",
+					"yaml",
 				},
 			})
 		end,
