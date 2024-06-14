@@ -45,7 +45,7 @@ local plugins = {
 				current_only = true,
 				winblend = 100, -- 透過
 				base = "buffer",
-				column = 130,
+				column = 154,
 				signs_on_startup = { "all" },
 				diagnostics_severities = { vim.diagnostic.severity.ERROR },
 			})
