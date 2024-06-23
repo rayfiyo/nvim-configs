@@ -15,8 +15,10 @@ map("n", "！", "!") -- <cmd>wq！用
 map("n", "っd", "dd") -- 全角・半角間違い用
 map("n", "っy", "yy") -- 全角・半角間違い用
 map("n", "うう", "uu") -- 全角・半角間違い用
+map({ "n", "i" }, "<F2>", "<Esc>:w<CR>:!xsel -bi < %<CR>")
 map({ "n", "i" }, "<F5>", "<Esc>:w<CR>:!go run %<CR>")
-map({ "n", "i" }, "<F6>", "<Esc>:w<CR>:!typst compile %<CR>")
+map({ "n", "i" }, "<F6>", "<Esc>:w<CR>:!typst compile main.typ<CR>")
+-- map({ "n", "i" }, "<F6>", "<Esc>:w<CR>:!typst compile %<CR>")
 
 ----------------------
 --- キーマップ以外 ---
