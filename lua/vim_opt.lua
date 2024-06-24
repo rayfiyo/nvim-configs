@@ -28,6 +28,8 @@ local opt = {
 	mouse = "a",
 	shell = "fish",
 	swapfile = false,
+
+	-- textwidth = 1,
 }
 
 for i, v in pairs(opt) do
