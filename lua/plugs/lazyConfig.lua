@@ -86,7 +86,7 @@ local plugins = {
 					"go",
 					"gomod",
 					"gosum",
-					"html",
+					-- "html",
 					"json",
 					"json5",
 					"jsonc",

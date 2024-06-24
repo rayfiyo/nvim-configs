@@ -11,7 +11,7 @@ lsp.gopls.setup({
 	},
 })
 lsp.templ.setup({})
-lsp.tsserver.setup({})
+-- lsp.tsserver.setup({})
 lsp.typst_lsp.setup({
 	settings = {
 		exportPdf = "onType", -- Choose onType, onSave or never.
