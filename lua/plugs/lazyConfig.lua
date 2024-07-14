@@ -102,9 +102,6 @@ local plugins = {
 		end,
 	},
 	{
-		"lewis6991/impatient.nvim",
-	},
-	{
 		"ray-x/go.nvim",
 		dependencies = { -- optional packages
 			"ray-x/guihua.lua",

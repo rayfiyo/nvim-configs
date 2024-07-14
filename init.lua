@@ -5,11 +5,9 @@ require("initLazy")
 
 require("plugs/lazyConfig")
 
--- require("plugs/formatter")
--- require("plugs/lsp")
--- require("plugs/scripts")
+require("plugs/formatter")
+require("plugs/lsp")
+require("plugs/scripts")
 
--- require("keymaps/plugs")
--- require("keymaps/lsp")
-
--- require("impatient")
+require("keymaps/plugs")
+require("keymaps/lsp")
