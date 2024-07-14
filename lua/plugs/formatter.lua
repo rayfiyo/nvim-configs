@@ -21,7 +21,7 @@ require("formatter").setup({
 		c = { require("formatter.filetypes.c").clangformat },
 		go = { require("formatter.filetypes.go").gofumpt },
 		lua = { require("formatter.filetypes.lua").stylua },
-		proto = { require("formatter.filetypes.proto").buf },
+		proto = { require("formatter.filetypes.proto").buf_format },
 		--svg = { require("formatter.filetypes.svg").xmlformat },
 		--typst = { require("formatter.filetypes.typst").typstfmt },
 		xml = { require("formatter.filetypes.xml").xmlformat },
