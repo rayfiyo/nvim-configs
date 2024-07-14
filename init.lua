@@ -3,7 +3,7 @@ require("vim_opt")
 
 require("initLazy")
 
-require("plugs/lazyConfig")
+require("plugs/lazy")
 
 require("plugs/formatter")
 require("plugs/lsp")
