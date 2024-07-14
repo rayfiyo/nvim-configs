@@ -2,7 +2,6 @@
 -- フォーマッタは mhartington/formatter.nvim を使用（LSP不使用）
 
 local lsp = require("lspconfig")
-lsp.bufls.setup({})
 lsp.clangd.setup({
 	filetypes = {
 		"c",
@@ -20,6 +19,7 @@ lsp.gopls.setup({
 		},
 	},
 })
+lsp.pbls.setup({})
 lsp.templ.setup({})
 -- lsp.tsserver.setup({})
 lsp.typst_lsp.setup({
