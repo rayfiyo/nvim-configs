@@ -27,7 +27,7 @@ map({ "n", "v" }, "<leader>ot", "<cmd>TypstPreview<CR>")
 -- Eandrju/cellular-automaton.nvim
 map({ "n", "v" }, "<leader>m", "<cmd>CellularAutomaton make_it_rain<CR>")
 -- github/copilot.vim
-map({ "n", "v" }, "<leader>c", "<cmd>Copilot enable<CR>")
+map({ "n", "v" }, "<leader>c", "<cmd>Copilot auth<CR>")
 -- mhartington/formatter.nvim
 map({ "n", "v" }, "<leader>f", "<cmd>Format<CR>")
 -- previm/previm
