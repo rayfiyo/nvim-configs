@@ -23,7 +23,7 @@ require("formatter").setup({
 		lua = { require("formatter.filetypes.lua").stylua },
 		proto = { require("formatter.filetypes.proto").buf_format },
 		-- svg = { require("formatter.filetypes.svg").xmlformat },
-		typst = { require("formatter.filetypes.typst").typstfmt },
+		-- typst = { require("formatter.filetypes.typst").typstfmt },
 		xml = { require("formatter.filetypes.xml").xmlformat },
 
 		-- prettierd 使う
