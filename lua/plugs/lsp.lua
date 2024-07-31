@@ -2,16 +2,7 @@
 -- フォーマッタは mhartington/formatter.nvim を使用（LSP不使用）
 
 local lsp = require("lspconfig")
-lsp.clangd.setup({
-	filetypes = {
-		"c",
-		"cpp",
-		"objc",
-		"objcpp",
-		"cuda",
-		-- "proto",
-	},
-})
+lsp.clangd.setup({})
 lsp.gopls.setup({
 	settings = {
 		gopls = {
