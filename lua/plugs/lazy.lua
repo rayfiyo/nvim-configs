@@ -161,6 +161,25 @@ local plugins = {
 		build = [[:Copilot setup]],
 		cmd = "Copilot",
 	},
+	--[[
+	{
+		"IogaMaster/neocord",
+		lazy = true,
+		event = "VeryLazy",
+		keys = { "<leader>d" },
+		init = function()
+			require("neocord").setup({
+				-- https://github.com/IogaMaster/neocord?tab=readme-ov-file#lua
+				-- 無効化はスペース２つ
+				editing_text = "Editing now",
+				file_explorer_text = "Browsing now",
+				reading_text = "Reading now",
+				workspace_text = "🦕💭",
+				line_number_text = "Line %s out of %s",
+			})
+		end,
+	},
+    ]]
 	{
 		"mattn/vim-maketable",
 		lazy = true,
