@@ -18,6 +18,17 @@ local map = vim.keymap.set
 map("n", "<Leader>j", "<cmd>bnext<CR>") -- 次のバッファに移動
 map("n", "<Leader>k", "<cmd>bprev<CR>") -- 前のバッファに移動
 map({ "i", "n" }, "<C-f>", "<C-x><C-o>") -- オムニ補完
+map( -- フォーマット（mhartington/formatter.nvim で失敗したら LSP）
+	{ "n", "v" },
+	"<leader>f",
+	function()
+		local formatter_ok, _ = pcall(vim.cmd, "Format")
+		if not formatter_ok then
+			vim.lsp.buf.format({ async = true })
+		end
+	end,
+	{ silent = true }
+)
 
 -------------------
 -- plugin keymap --
@@ -29,7 +40,7 @@ map({ "n", "v" }, "<leader>m", "<cmd>CellularAutomaton make_it_rain<CR>")
 -- github/copilot.vim
 map({ "n", "v" }, "<leader>c", "<cmd>Copilot auth<CR>")
 -- mhartington/formatter.nvim
-map({ "n", "v" }, "<leader>f", "<cmd>Format<CR>")
+-- map({ "n", "v" }, "<leader>f", "<cmd>Format<CR>")
 -- previm/previm
 map({ "n", "v" }, "<leader>op", "<cmd>PrevimOpen<CR>")
 -- skanehira/translate.vim
