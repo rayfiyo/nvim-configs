@@ -18,13 +18,17 @@ local map = vim.keymap.set
 map("n", "<Leader>j", "<cmd>bnext<CR>") -- 次のバッファに移動
 map("n", "<Leader>k", "<cmd>bprev<CR>") -- 前のバッファに移動
 map({ "i", "n" }, "<C-f>", "<C-x><C-o>") -- オムニ補完
-map( -- フォーマット（mhartington/formatter.nvim で失敗したら LSP）
+map( -- フォーマット（mhartington/formatter.nvim がなければ LSP）
 	{ "n", "v" },
 	"<leader>f",
 	function()
-		local formatter_ok, _ = pcall(vim.cmd, "Format")
-		if not formatter_ok then
+		local config = require("formatter.config").values.filetype
+		local current_filetype = vim.bo.filetype
+		-- 現在のファイルタイプの formatter.config が存在しない（nil）か
+		if config[current_filetype] == nil then
 			vim.lsp.buf.format({ async = true })
+		else
+			vim.cmd("Format")
 		end
 	end,
 	{ silent = true }
