@@ -2,6 +2,7 @@
 -- フォーマッタは mhartington/formatter.nvim を使用（LSP不使用）
 
 local lsp = require("lspconfig")
+lsp.ast_grep.setup({}) -- プロジェクトルートに sgconfig.yml 必須
 lsp.clangd.setup({})
 lsp.gopls.setup({
 	settings = {
@@ -10,9 +11,7 @@ lsp.gopls.setup({
 		},
 	},
 })
-lsp.pbls.setup({})
 lsp.templ.setup({})
--- lsp.tsserver.setup({})
 lsp.typst_lsp.setup({
 	settings = {
 		exportPdf = "onType", -- Choose onType, onSave or never.

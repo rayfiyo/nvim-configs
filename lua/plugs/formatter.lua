@@ -21,7 +21,6 @@ require("formatter").setup({
 		c = { require("formatter.filetypes.c").clangformat },
 		go = { require("formatter.filetypes.go").gofumpt },
 		lua = { require("formatter.filetypes.lua").stylua },
-		proto = { require("formatter.filetypes.proto").buf_format },
 		-- svg = { require("formatter.filetypes.svg").xmlformat },
 		typst = { require("formatter.filetypes.typst").typstfmt },
 		xml = { require("formatter.filetypes.xml").xmlformat },
@@ -42,7 +41,7 @@ require("formatter").setup({
 	},
 })
 
--- prettierd but not support for atter.vim
+-- prettierd but not support formatter.vim
 -- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
 -- angular = { require("formatter.filetypes.angular").prettierd },
 -- flow = { require("formatter.filetypes.flow").prettierd },
