@@ -29,6 +29,8 @@ local opt = {
 	shell = "fish",
 	swapfile = false,
 
+	termguicolors = false, -- 背景色をターミナルの背景色と同期
+
 	-- textwidth = 1,
 }
 
