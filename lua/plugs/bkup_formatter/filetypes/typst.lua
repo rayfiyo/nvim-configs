@@ -4,7 +4,6 @@ function M.typstfmt()
 	return {
 		exe = "typstfmt",
 		args = { "--verbose" },
-		stdin = true,
 	}
 end
 
@@ -15,4 +14,4 @@ function M.typstyle()
 	}
 end
 
-return M
+return
