@@ -161,7 +161,7 @@ local plugins = {
 	{
 		"github/copilot.vim",
 		lazy = true,
-		build = [[:Copilot setup]],
+		build = ":Copilot setup",
 		cmd = "Copilot",
 	},
 	--[[
