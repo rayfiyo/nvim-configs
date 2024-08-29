@@ -113,7 +113,9 @@ local plugins = {
 		end,
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
-		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+
+		-- if you need to install/update all binaries
+		build = ':lua require("go.install").update_all_sync()',
 	},
 	{
 		"vim-jp/vimdoc-ja",
@@ -129,6 +131,7 @@ local plugins = {
 				PATH = "prepend", -- "skip" seems to cause the spawning error
 			})
 		end,
+		build = ":MasonInstall ast-grep clang-format gopls stylua typstfmt xmlformatter clangd gofumpt prettierd templ typst-lsp",
 	},
 
 	--------------------------------------------------------
