@@ -198,6 +198,11 @@ local plugins = {
 			"Format",
 			"FormatWrite",
 		},
+		build = function()
+			vim.fn.system("cp \
+                ~/.config/nvim/lua/plugs/bkup_formatter/filetypes/*.lua\
+                ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/")
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
