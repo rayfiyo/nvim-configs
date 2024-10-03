@@ -12,30 +12,47 @@
 
 local map = vim.keymap.set
 
+--------------
+-- 基本機能 --
+--------------
+map("n", "！", "!") -- <cmd>wq！用
+map("n", "っd", "dd") -- 全角・半角間違い用
+map("n", "っy", "yy") -- 全角・半角間違い用
+map("n", "うう", "uu") -- 全角・半角間違い用
+map({ "n", "i" }, "<F2>", "<Esc>:w<CR>:!xsel -bi < %<CR>")
+map({ "n", "i" }, "<F6>", "<Esc>:w<CR>:!go test %<CR>")
+map({ "n", "i" }, "<F5>", function()
+	local current_filetype = vim.bo.filetype
+	if current_filetype == "go" then
+		vim.cmd("update")
+		vim.cmd("!go run %")
+	elseif current_filetype == "typst" then
+		vim.cmd("update")
+		vim.cmd("!typst compile %")
+	end
+end, { silent = true })
+
 ---------
 -- LSP --
 ---------
 map("n", "<Leader>j", "<cmd>bnext<CR>") -- 次のバッファに移動
 map("n", "<Leader>k", "<cmd>bprev<CR>") -- 前のバッファに移動
 map({ "i", "n" }, "<C-f>", "<C-x><C-o>") -- オムニ補完
-map( -- フォーマット（mhartington/formatter.nvim がなければ LSP）
-	{ "n", "v" },
-	"<leader>f",
-	function()
-		local config = require("formatter.config").values.filetype
-		local current_filetype = vim.bo.filetype
-		-- 現在のファイルタイプの formatter.config が存在しない（nil）か
-		if config[current_filetype] == nil then
-			vim.lsp.buf.format({ async = true })
-		else
-			vim.cmd("Format")
-		end
-	end,
-	{ silent = true }
-)
+
+-- フォーマット（mhartington/formatter.nvim がなければ LSP）
+map({ "n", "v" }, "<leader>f", function()
+	local config = require("formatter.config").values.filetype
+	local current_filetype = vim.bo.filetype
+	-- 現在のファイルタイプの formatter.config が存在しない（nil）か
+	if config[current_filetype] == nil then
+		vim.lsp.buf.format({ async = true })
+	else
+		vim.cmd("Format")
+	end
+end, { silent = true })
 
 -------------------
--- plugin keymap --
+-- plugin 依存 --
 -------------------
 -- chomosuke/typst-preview.nvim
 map({ "n", "v" }, "<leader>ot", "<cmd>TypstPreview<CR>")

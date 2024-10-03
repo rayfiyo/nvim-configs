@@ -1,17 +1,10 @@
+local defaults = require("formatter.defaults")
+local util = require("formatter.util")
+
 local M = {}
 
-function M.typstfmt()
-	return {
-		exe = "typstfmt",
-		args = { "--verbose" },
-	}
-end
+M.prettierd = util.copyf(defaults.prettierd)
 
-function M.typstyle()
-	return {
-		exe = "typstyle",
-		stdin = true,
-	}
-end
+M.xmlformat = util.copyf(defaults.xmlformat)
 
-return
+return M
