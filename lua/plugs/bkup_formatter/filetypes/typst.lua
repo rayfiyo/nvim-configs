@@ -1,10 +1,10 @@
-local defaults = require("formatter.defaults")
-local util = require("formatter.util")
-
 local M = {}
 
-M.prettierd = util.copyf(defaults.prettierd)
-
-M.xmlformat = util.copyf(defaults.xmlformat)
+function M.gofumpt()
+	return {
+		exe = "typstfmt",
+		stdin = true,
+	}
+end
 
 return M
