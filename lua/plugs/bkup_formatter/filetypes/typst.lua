@@ -1,6 +1,6 @@
 local M = {}
 
-function M.gofumpt()
+function M.typstfmt()
 	return {
 		exe = "typstfmt",
 		stdin = true,
