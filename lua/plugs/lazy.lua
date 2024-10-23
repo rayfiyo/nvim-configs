@@ -131,7 +131,7 @@ local plugins = {
 				PATH = "prepend", -- "skip" seems to cause the spawning error
 			})
 		end,
-		build = ":MasonInstall ast-grep clang-format gopls stylua typstfmt xmlformatter clangd gofumpt prettierd templ typst-lsp",
+		build = ":MasonInstall clang-format gopls stylua typstfmt xmlformatter clangd gofumpt prettierd typst-lsp",
 	},
 
 	--------------------------------------------------------
