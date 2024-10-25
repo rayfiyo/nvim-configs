@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 -- フォーマッタは mhartington/formatter.nvim を使用（LSP不使用）
 
 local lsp = require("lspconfig")
