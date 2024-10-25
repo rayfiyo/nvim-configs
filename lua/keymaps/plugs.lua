@@ -28,7 +28,7 @@ map({ "n", "i" }, "<F5>", function()
 		vim.cmd("!go run %")
 	elseif current_filetype == "typst" then
 		vim.cmd("update")
-		vim.cmd("!typst compile %")
+		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/noto-cjk/ typst compile %")
 	end
 end, { silent = true })
 
