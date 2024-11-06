@@ -11,6 +11,7 @@ lsp.gopls.setup({
 		},
 	},
 })
+lsp.pylsp.setup({})
 lsp.templ.setup({})
 lsp.typst_lsp.setup({
 	settings = {
