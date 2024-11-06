@@ -22,6 +22,7 @@ require("formatter").setup({
 		go = { require("formatter.filetypes.go").gofumpt },
 		lua = { require("formatter.filetypes.lua").stylua },
 		-- svg = { require("formatter.filetypes.svg").xmlformat },
+		python = { require("formatter.filetypes.python").black },
 		typst = { require("formatter.filetypes.typst").typstfmt },
 		xml = { require("formatter.filetypes.xml").xmlformat },
 
