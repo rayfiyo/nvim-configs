@@ -21,9 +21,7 @@ require("formatter").setup({
 		c = { require("formatter.filetypes.c").clangformat },
 		go = { require("formatter.filetypes.go").gofumpt },
 		lua = { require("formatter.filetypes.lua").stylua },
-		-- svg = { require("formatter.filetypes.svg").xmlformat },
 		python = { require("formatter.filetypes.python").black },
-		typst = { require("formatter.filetypes.typst").typstfmt },
 		xml = { require("formatter.filetypes.xml").xmlformat },
 
 		-- prettierd 使う
@@ -32,10 +30,32 @@ require("formatter").setup({
 		html = { require("formatter.filetypes.html").prettierd },
 		json = { require("formatter.filetypes.json").prettierd },
 		javascript = { require("formatter.filetypes.javascript").prettierd },
+		javascriptreact = { require("formatter.filetypes.javascriptreact").prettierd },
 		markdown = { require("formatter.filetypes.markdown").prettierd },
 		typescript = { require("formatter.filetypes.typescript").prettierd },
 		vue = { require("formatter.filetypes.vue").prettierd },
 		yaml = { require("formatter.filetypes.yaml").prettierd },
+
+		-- 自作
+		svg = {
+			-- require("formatter.filetypes.svg").xmlformat
+			function()
+				return {
+					exe = "xmlformat",
+					args = { "-" },
+					stdin = true,
+				}
+			end,
+		},
+		typst = {
+			-- require("formatter.filetypes.typst").typstfmt
+			function()
+				return {
+					exe = "typstfmt",
+					stdin = true,
+				}
+			end,
+		},
 
 		-- その他
 		-- ["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },
@@ -46,6 +66,5 @@ require("formatter").setup({
 -- https://github.com/mhartington/formatter.nvim/tree/master/lua/formatter/filetypes
 -- angular = { require("formatter.filetypes.angular").prettierd },
 -- flow = { require("formatter.filetypes.flow").prettierd },
--- jsx = { require("formatter.filetypes.jsx").prettierd },
 -- less = { require("formatter.filetypes.less").prettierd },
 -- scss = { require("formatter.filetypes.scss").prettierd },
