@@ -37,8 +37,16 @@ require("formatter").setup({
 		yaml = { require("formatter.filetypes.yaml").prettierd },
 
 		-- 自作
-		svg = {
-			-- require("formatter.filetypes.svg").xmlformat
+		jsx = { -- prettierd
+			function()
+				return {
+					exe = "prettierd",
+					args = { util.escape_path(util.get_current_buffer_file_path()) },
+					stdin = true,
+				}
+			end,
+		},
+		svg = { -- xmlformat
 			function()
 				return {
 					exe = "xmlformat",
@@ -47,8 +55,7 @@ require("formatter").setup({
 				}
 			end,
 		},
-		typst = {
-			-- require("formatter.filetypes.typst").typstfmt
+		typst = { -- typstfmt
 			function()
 				return {
 					exe = "typstfmt",
