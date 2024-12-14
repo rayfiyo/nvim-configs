@@ -11,10 +11,10 @@ local map = vim.keymap.set
 vim.g.mapleader = " " -- リーダーキーを スペース に
 vim.g.maplocalleader = " " -- リーダーキーを スペース に
 map("n", "<ESC><ESC>", "<cmd>noh<CR>") -- Escキー をタブルクリックで、ハイライト削除
-map("i", "{", "{}<ESC>i") -- 閉じ｛括弧の入力
-map("i", "{<Enter>", "{}<ESC>i<CR><ESC><S-o>") -- 閉じ（括弧の入力
-map("i", "()", "<ESC>i") -- 閉じ（括弧の入力
-map("i", "()<Enter>", "<ESC>i<CR><ESC><S-o>") -- 閉じ（括弧の入力
+-- map("i", "{", "{}<ESC>i") -- 閉じ｛括弧の入力
+-- map("i", "{<Enter>", "{}<ESC>i<CR><ESC><S-o>") -- 閉じ（括弧の入力
+-- map("i", "()", "()<ESC>i") -- 閉じ（括弧の入力
+-- map("i", "()<Enter>", "<ESC>i<CR><ESC><S-o>") -- 閉じ（括弧の入力
 
 ----------------------
 --- キーマップ以外 ---
