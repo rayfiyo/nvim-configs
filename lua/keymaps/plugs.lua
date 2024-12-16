@@ -12,9 +12,13 @@
 
 local map = vim.keymap.set
 
+vim.g.mapleader = " " -- リーダーキーを スペース に
+vim.g.maplocalleader = " " -- リーダーキーを スペース に
+
 --------------
 -- 基本機能 --
 --------------
+map("n", "<ESC><ESC>", "<cmd>noh<CR>") -- Escキー をタブルクリックで、ハイライト削除
 map("n", "！", "!") -- <cmd>wq！用
 map("n", "っd", "dd") -- 全角・半角間違い用
 map("n", "っy", "yy") -- 全角・半角間違い用
@@ -31,6 +35,10 @@ map({ "n", "i" }, "<F5>", function()
 		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/noto-cjk/ typst compile %")
 	end
 end, { silent = true })
+-- map("i", "{", "{}<ESC>i") -- 閉じ｛括弧の入力
+-- map("i", "{<Enter>", "{}<ESC>i<CR><ESC><S-o>") -- 閉じ（括弧の入力
+-- map("i", "()", "()<ESC>i") -- 閉じ（括弧の入力
+-- map("i", "()<Enter>", "<ESC>i<CR><ESC><S-o>") -- 閉じ（括弧の入力
 
 ---------
 -- LSP --
