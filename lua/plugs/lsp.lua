@@ -15,7 +15,12 @@ lsp.gopls.setup({
 lsp.pylsp.setup({})
 lsp.templ.setup({})
 lsp.ts_ls.setup({})
-lsp.tinymist.setup({})
+lsp.tinymist.setup({
+	settings = {
+		exportPdf = "onType",
+		fontPaths = "/usr/share/fonts/",
+	},
+})
 --[[
 lsp.typst_lsp.setup({
 	settings = {
