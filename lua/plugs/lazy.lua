@@ -126,6 +126,25 @@ local plugins = {
 	{
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
+		opts = {
+			ensure_installed = {
+				"ast-grep",
+				"black",
+				"clang-format",
+				"clangd",
+				"gofumpt",
+				"gopls",
+				"prettierd",
+				"python-lsp-server",
+				"stylua",
+				"templ",
+				"tinymist",
+				"typescript-language-server",
+				-- "typst-lsp",
+				"typstfmt",
+				"xmlformatter",
+			},
+		},
 		init = function()
 			require("mason").setup({
 				PATH = "prepend", -- "skip" seems to cause the spawning error
