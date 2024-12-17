@@ -10,4 +10,4 @@ require("plugs/lsp")
 require("plugs/scripts")
 
 require("keymaps/plugs")
-require("keymaps/lsp")
+require("keymaps/lsp_attach")
