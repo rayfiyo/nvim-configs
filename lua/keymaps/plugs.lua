@@ -35,7 +35,7 @@ map({ "n", "i" }, "<F5>", function()
 		vim.cmd("!go run %")
 	elseif current_filetype == "typst" then
 		vim.cmd("update")
-		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/noto-cjk/ typst compile %")
+		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/ typst compile %")
 	end
 end, { silent = true })
 -- map("i", "{", "{}<ESC>i") -- 閉じ｛括弧の入力
