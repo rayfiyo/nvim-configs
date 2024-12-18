@@ -32,10 +32,10 @@ map({ "n", "i" }, "<F5>", function()
 	local current_filetype = vim.bo.filetype
 	if current_filetype == "c" then
 		vim.cmd("update")
-		vim.cmd("!gcc -lm % && ./a.out")
+		vim.cmd("!gcc -lm % && echo : && ./a.out")
 	elseif current_filetype == "go" then
 		vim.cmd("update")
-		vim.cmd("!go run %")
+		vim.cmd("!echo : && go run %")
 	elseif current_filetype == "typst" then
 		vim.cmd("update")
 		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/ typst compile %")
