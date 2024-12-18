@@ -32,7 +32,7 @@ map({ "n", "i" }, "<F5>", function()
 	local current_filetype = vim.bo.filetype
 	if current_filetype == "c" then
 		vim.cmd("update")
-		vim.cmd("!gcc -lm %")
+		vim.cmd("!gcc -lm % && ./a.out")
 	elseif current_filetype == "go" then
 		vim.cmd("update")
 		vim.cmd("!go run %")
