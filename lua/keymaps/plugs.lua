@@ -30,7 +30,10 @@ map({ "n", "i" }, "<F2>", "<Esc>:w<CR>:!xsel -bi < %<CR>")
 map({ "n", "i" }, "<F6>", "<Esc>:w<CR>:!go test %<CR>")
 map({ "n", "i" }, "<F5>", function()
 	local current_filetype = vim.bo.filetype
-	if current_filetype == "go" then
+	if current_filetype == "c" then
+		vim.cmd("update")
+		vim.cmd("!gcc -lm %")
+	elseif current_filetype == "go" then
 		vim.cmd("update")
 		vim.cmd("!go run %")
 	elseif current_filetype == "typst" then
