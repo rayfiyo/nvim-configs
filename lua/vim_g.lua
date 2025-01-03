@@ -4,8 +4,11 @@ local g = {
 	did_install_default_menus = 1,
 	did_install_syntax_menu = 1,
 	did_indent_on = 1,
-	-- did_load_filetypes = 1, -- lsp が動作しなくなる
 	did_load_ftplugin = 1,
+	-- did_load_filetypes = 1, -- lsp が動作しなくなる
+
+	-- https://coralpink.github.io/commentary/outro/lazy.html
+	-- disabled_plugins の設定 含む
 	loaded_2html_plugin = 1, -- ファイルをHTML形式に変換するプラグイン
 	loaded_gzip = 1, -- Gzip圧縮ファイルの編集
 	loaded_man = 1, -- マニュアルページを表示する
