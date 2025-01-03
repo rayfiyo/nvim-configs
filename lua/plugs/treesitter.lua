@@ -1,2 +1,0 @@
--- nvim-treesitter (syntax highlighting plugin) の設定
--- lazyConfig.lua に記載
