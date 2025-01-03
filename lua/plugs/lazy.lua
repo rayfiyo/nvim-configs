@@ -97,13 +97,14 @@ local plugins = {
 	-- Eandrju/cellular-automaton.nvim: keys = "<leader>r",
 	{ "github/copilot.vim", lazy = true, build = ":Copilot setup", cmd = "Copilot" },
 	{ "mattn/vim-maketable", lazy = true, cmd = { "MakeTable", "UnmakeTable" } },
-	{ "neovim/nvim-lspconfig", lazy = true },
+	{ "neovim/nvim-lspconfig", lazy = true, keys = "i" },
 	{ "previm/previm", lazy = true, ft = "markdown" },
 	-- previm/previm: dependencies = "tyru/open-browser.vim", -- wsl と相性悪し
 	{ "skanehira/translate.vim", lazy = true, cmd = "Translate" },
 	{ "tpope/vim-commentary", lazy = true, keys = { "gcc", "gc", "gcap" } },
 	{ "vim-jp/vimdoc-ja", lazy = true, keys = { "h", mode = "c" } },
 	{
+		--[[
 		"chomosuke/typst-preview.nvim",
 		lazy = true,
 		ft = "typst",
@@ -117,6 +118,7 @@ local plugins = {
 		build = function()
 			require("typst-preview").update()
 		end,
+        --]]
 	},
 	{
 		"mhartington/formatter.nvim",
@@ -132,28 +134,11 @@ local plugins = {
             ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/")
 		end,
 	},
-	{
-		"ray-x/go.nvim",
-		lazy = true,
-		dependencies = {
-			-- optional packages
-			-- "ray-x/guihua.lua",
-			-- "neovim/nvim-lspconfig",
-			-- "nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("go").setup()
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", "gomod" },
-		-- if you need to install/update all binaries
-		build = ':lua require("go.install").update_all_sync()',
-	},
 }
 
 require("lazy").setup(plugins, opts)
 
-local notes = {
+local no_used = {
 	{
 		"IogaMaster/neocord",
 		lazy = true,
@@ -170,6 +155,22 @@ local notes = {
 				line_number_text = "Line %s out of %s",
 			})
 		end,
+	},
+	{
+		"ray-x/go.nvim",
+		lazy = true,
+		dependencies = { -- optional packages
+			-- "ray-x/guihua.lua",
+			-- "neovim/nvim-lspconfig",
+			-- "nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("go").setup()
+		end,
+		event = { "CmdlineEnter" }, -- これ起動遅くなるかも
+		ft = { "go", "gomod" },
+		-- if you need to install/update all binaries
+		build = ':lua require("go.install").update_all_sync()',
 	},
 }
 
