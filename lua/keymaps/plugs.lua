@@ -70,22 +70,30 @@ map({ "n", "v" }, "<leader>f", function()
 end, { silent = true })
 local opts = { noremap = true, silent = true }
 
--------------------
+-----------------
 -- plugin 依存 --
--------------------
+-----------------
+
 -- chomosuke/typst-preview.nvim
 map({ "n", "v" }, "<leader>ot", "<cmd>TypstPreview<CR>")
+
 -- Eandrju/cellular-automaton.nvim
 map({ "n", "v" }, "<leader>m", "<cmd>CellularAutomaton make_it_rain<CR>")
+
 -- github/copilot.vim
 map({ "n", "v" }, "<leader>c", "<cmd>Copilot auth<CR>")
+
 -- mhartington/formatter.nvim
 -- map({ "n", "v" }, "<leader>f", "<cmd>Format<CR>")
+
 -- previm/previm
 map({ "n", "v" }, "<leader>op", "<cmd>PrevimOpen<CR>")
+
 -- skanehira/translate.vim
 map({ "n", "v" }, "<leader>t", "<cmd>Translate<CR>")
+
 -- tpope/vim-commentary
 map({ "n", "v", "i" }, "<C-_>", "gcc", { remap = true })
+
 -- tyru/open-browser.vim
 -- map({ "n", "v" }, "<leader><C-l>", "<Plug>(openbrowser-smart-search)")
