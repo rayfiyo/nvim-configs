@@ -1,26 +1,12 @@
+-- 公式ドキュメント: https://lazy.folke.io/spec
+-- disabled_plugins の設定は vim_g.lua に
 vim.loader.enable()
-
---[[ https://github.com/folke/lazy.nvim
-init: 起動時に常に実行．
-config: プラグインのロード時に実行．
-        optsかconfig = trueが設定されていれば，
-        自動的にrequire(MAIN).setup(opts)を実行．
-build: プラグインがインストールまたは更新されたときに実行．
-        文字列 は シェルコマンド．
-        先頭 : は Neovimコマンド．
-]]
-
--- defaults configuration --
--- https://coralpink.github.io/commentary/outro/lazy.html
--- disabled_plugins の設定は speedup.lua に
-
 -- plugin configuration (Based on migration from packer.nvim) --
 -- https://coralpink.github.io/commentary/outro/lazy-migration-guide.html
 local plugins = {
 	-- -- -- -- -- -- --
 	-- -- 通常起動 -- --
 	-- -- -- -- -- -- --
-	{ "cohama/lexima.vim", lazy = true },
 	{
 		"dstein64/nvim-scrollview",
 		init = function()
@@ -75,7 +61,6 @@ local plugins = {
 			})
 		end,
 	},
-	{ "vim-jp/vimdoc-ja" },
 	{ "wakatime/vim-wakatime" },
 	{
 		"williamboman/mason.nvim",
@@ -107,6 +92,7 @@ local plugins = {
 	-- -- -- -- -- -- --
 	-- -- 遅延起動 -- --
 	-- -- -- -- -- -- --
+	{ "cohama/lexima.vim", lazy = true, keys = "i" },
 	{ "Eandrju/cellular-automaton.nvim", lazy = true, cmd = "CellularAutomaton" },
 	-- Eandrju/cellular-automaton.nvim: keys = "<leader>r",
 	{ "github/copilot.vim", lazy = true, build = ":Copilot setup", cmd = "Copilot" },
@@ -116,6 +102,7 @@ local plugins = {
 	-- previm/previm: dependencies = "tyru/open-browser.vim", -- wsl と相性悪し
 	{ "skanehira/translate.vim", lazy = true, cmd = "Translate" },
 	{ "tpope/vim-commentary", lazy = true, keys = { "gcc", "gc", "gcap" } },
+	{ "vim-jp/vimdoc-ja", lazy = true, keys = { "h", mode = "c" } },
 	{
 		"chomosuke/typst-preview.nvim",
 		lazy = true,
@@ -186,43 +173,50 @@ local notes = {
 	},
 }
 
--- https://github.com/folke/lazy.nvim#-plugin-spec
---[[
+-- 公式ドキュメント: https://lazy.folke.io/spec
 
-key は指定すると失敗するかも！！
-
-= Lazy-load: If conditions match, run
-== vim cmd
-    cmd = {":avim", ":bstart"},
-== event
-    * "BufEnter" か "BufEnter *.lua" で指定
-    event = {"FocusLost", "CursorHold"},
-== filetype
-    ft = "go",
-== key mapping
-    keys = {"v", "<CR>"},
-== when the plugin loads (依存関係)
-    dependencies = "repo",
-== init: always executed during startup
+--[[ 説明
+init: 起動時に常に実行．
     init = function() require("scrollview").setup{
         excluded_filetypes = {"nerdtree"},
     } end,
-== build: when a plugin is installed or updated ]]
---    vim:  build = [[:GlowInstall]],
---    bash: build = [[npm install]],
+config: プラグインのロード時に実行
+        opts か config = true が設定されていれば，
+        自動的に require(MAIN).setup(opts) を実行
+build: プラグインがインストールまたは更新されたときに実行
+        文字列 は シェルコマンド
+        先頭 : は Neovimコマンド
+lazy: event, keys, cmd, ft のいずれかで発火する遅延に
+]]
 
---[[
-= usage
-== key mappings (モード指定すると副作用あり)
-    keys = {
-        {"n", "<CR>"},
-        {"v", "<CR>"},
-    },
-= use a function
+--[[ usage
+キーマップ
+    モード指定すると副作用あり -> 改善？
+    特に，コマンドラインでの入力はキーマップと c モードで指定する
+	keys = { "h", mode = "c" } },
+
+１つの関数
     build = function() vim.cmd.GlowInstall() end,
-= use functions
+
+複数の関数
     init = function()
         vim.keymap.set("x", "ga", "<Plug>(EasyAlign)")
         vim.keymap.set("n", "ga", "<Plug>(EasyAlign)")
     end,
+
+イベント
+    -- * "BufEnter" か "BufEnter *.lua" で指定
+    event = {"FocusLost", "CursorHold"},
+
+vim コマンド
+    cmd = {":avim", ":bstart"},
+
+依存
+    dependencies = "repo",
+
+ファイルタイプ
+    ft = "go",
+
+キーマップ
+    keys = {"v", "<CR>"},
 ]]
