@@ -1,7 +1,8 @@
 require("base")
+require("vim_g")
 require("vim_opt")
 
-require("init-lazy")
+require("init_lazy")
 
 require("plugs/lazy")
 
