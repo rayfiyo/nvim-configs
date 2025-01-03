@@ -28,57 +28,6 @@ local plugins = {
 		end,
 	},
 	{
-		--[[
-        対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-        導入１: https://zenn.dev/duglaser/articles/c02d6a937a48df
-		導入２: https://konnyakmannan.com/archives/neovim_treesitter_setup_on_windows11/
-        メモ: プラグインマネージャーは関係ない `:TSInstallInfo`
-        ]]
-		"nvim-treesitter/nvim-treesitter",
-		lazy = false,
-		build = ":TSUpdate",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				highlight = { enable = true, additional_vim_regex_highlighting = true },
-				indent = { enable = true },
-				ensure_installed = {
-					"bash",
-					"bibtex",
-					"c",
-					"cpp",
-					"css",
-					"csv",
-					"dockerfile",
-					"fish",
-					"git_config",
-					"git_rebase",
-					"gitcommit",
-					"gitignore",
-					"go",
-					"gomod",
-					"gosum",
-					"html",
-					"javascript",
-					"json",
-					"json5",
-					"jsonc",
-					"latex",
-					"lua",
-					"markdown",
-					"markdown_inline",
-					"python",
-					"sql",
-					"toml",
-					"tsx",
-					"typescript",
-					"typst",
-					"yaml",
-					"vim",
-				},
-			})
-		end,
-	},
-	{
 		"williamboman/mason.nvim",
 		lazy = false,
 		dependencies = { "williamboman/mason-lspconfig.nvim" },
@@ -122,7 +71,72 @@ local plugins = {
 	{ "vim-jp/vimdoc-ja", keys = { "h", mode = "c" } },
 	{ "wakatime/vim-wakatime", keys = "i" },
 	{
+		"mhartington/formatter.nvim",
+		keys = "<leader>f",
+		cmd = { "Format", "FormatWrite" },
+		build = function()
+			vim.fn.system("mkdir -p\
+            ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/;\
+            cp ~/.config/nvim/lua/plugs/bkup_formatter/filetypes/*.lua\
+            ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/")
+		end,
+	},
+	{
 		--[[
+        対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+        導入１: https://zenn.dev/duglaser/articles/c02d6a937a48df
+		導入２: https://konnyakmannan.com/archives/neovim_treesitter_setup_on_windows11/
+        メモ: プラグインマネージャーは関係ない `:TSInstallInfo`
+        ]]
+		"nvim-treesitter/nvim-treesitter",
+		keys = "i",
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				highlight = { enable = true, additional_vim_regex_highlighting = true },
+				indent = { enable = true },
+				ensure_installed = {
+					"bash",
+					"bibtex",
+					"c",
+					"cpp",
+					"css",
+					"csv",
+					"dockerfile",
+					"fish",
+					"git_config",
+					"git_rebase",
+					"gitcommit",
+					"gitignore",
+					"go",
+					"gomod",
+					"gosum",
+					"html",
+					"javascript",
+					"json",
+					"json5",
+					"jsonc",
+					"lua",
+					"markdown",
+					"markdown_inline",
+					"python",
+					"sql",
+					"toml",
+					"tsx",
+					"typescript",
+					"typst",
+					"yaml",
+					"vim",
+				},
+			})
+		end,
+	},
+}
+
+require("lazy").setup(plugins, opts)
+
+local no_used = {
+	{
 		"chomosuke/typst-preview.nvim",
 		ft = "typst",
 		version = "0.1.*",
@@ -135,26 +149,7 @@ local plugins = {
 		build = function()
 			require("typst-preview").update()
 		end,
-        --]]
 	},
-	{
-		"mhartington/formatter.nvim",
-		cmd = {
-			"Format",
-			"FormatWrite",
-		},
-		build = function()
-			vim.fn.system("mkdir -p\
-            ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/;\
-            cp ~/.config/nvim/lua/plugs/bkup_formatter/filetypes/*.lua\
-            ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/")
-		end,
-	},
-}
-
-require("lazy").setup(plugins, opts)
-
-local no_used = {
 	{
 		"IogaMaster/neocord",
 		event = "VeryLazy",
@@ -191,7 +186,7 @@ local no_used = {
 -- 公式ドキュメント: https://lazy.folke.io/spec
 
 --[[ 説明
-init: 起動時に常に実行．
+init: nvim 起動時に常に実行 （つまり，lazy = false も設定される）
     init = function() require("scrollview").setup{
         excluded_filetypes = {"nerdtree"},
     } end,
