@@ -103,10 +103,11 @@ local plugins = {
 	},
 	{
 		"ray-x/go.nvim",
-		dependencies = { -- optional packages
-			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			-- optional packages
+			-- "ray-x/guihua.lua",
+			-- "neovim/nvim-lspconfig",
+			-- "nvim-treesitter/nvim-treesitter",
 		},
 		config = function()
 			require("go").setup()
@@ -232,7 +233,7 @@ local plugins = {
 		"previm/previm",
 		lazy = true,
 		ft = "markdown",
-		dependencies = "tyru/open-browser.vim",
+		-- dependencies = "tyru/open-browser.vim", -- wsl と相性悪し
 	},
 	{
 		"skanehira/translate.vim",

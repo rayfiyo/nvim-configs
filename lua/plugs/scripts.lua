@@ -29,6 +29,10 @@ autocmd("FileType", {
 	vim.opt_local.commentstring:append("// %s"),
 })
 
+-- previm/previm の設定
+vim.g.previm_open_cmd = "vivaldi.exe"
+vim.g.previm_wsl_mode = "1"
+
 -- previm/previm ファイル開く度に立ち上がるのが意外と不便だったので廃止
 -- autocmd BufRead,BufNewFile *.{text,txt,md} vim.opt.filetype=markdown
 --[[
