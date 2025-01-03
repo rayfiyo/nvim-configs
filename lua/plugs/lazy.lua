@@ -28,6 +28,19 @@ local plugins = {
 		end,
 	},
 	{
+		"mhartington/formatter.nvim",
+		lazy = false,
+		keys = "<leader>f",
+		cmd = { "Format", "FormatWrite" },
+		build = function()
+			vim.fn.system("mkdir -p\
+            ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/;\
+            cp ~/.config/nvim/lua/plugs/bkup_formatter/filetypes/*.lua\
+            ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/")
+		end,
+	},
+	{ "neovim/nvim-lspconfig", lazy = false, keys = "i" },
+	{
 		"williamboman/mason.nvim",
 		lazy = false,
 		dependencies = { "williamboman/mason-lspconfig.nvim" },
@@ -63,24 +76,12 @@ local plugins = {
 	-- Eandrju/cellular-automaton.nvim: keys = "<leader>r",
 	{ "github/copilot.vim", build = ":Copilot setup", cmd = "Copilot" },
 	{ "mattn/vim-maketable", cmd = { "MakeTable", "UnmakeTable" } },
-	{ "neovim/nvim-lspconfig", keys = "i" },
 	{ "previm/previm", ft = "markdown" },
 	-- previm/previm: dependencies = "tyru/open-browser.vim", -- wsl と相性悪し
 	{ "skanehira/translate.vim", cmd = "Translate" },
 	{ "tpope/vim-commentary", keys = { "gcc", "gc", "gcap" } },
 	{ "vim-jp/vimdoc-ja", keys = { "h", mode = "c" } },
 	{ "wakatime/vim-wakatime", keys = "i" },
-	{
-		"mhartington/formatter.nvim",
-		keys = "<leader>f",
-		cmd = { "Format", "FormatWrite" },
-		build = function()
-			vim.fn.system("mkdir -p\
-            ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/;\
-            cp ~/.config/nvim/lua/plugs/bkup_formatter/filetypes/*.lua\
-            ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/")
-		end,
-	},
 	{
 		--[[
         対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
