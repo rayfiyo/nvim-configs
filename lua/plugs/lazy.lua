@@ -1,6 +1,11 @@
 -- 公式ドキュメント: https://lazy.folke.io/spec
 -- disabled_plugins の設定は vim_g.lua に
 vim.loader.enable()
+local opts = {
+	defaults = { lazy = true }, -- デフォルトで lazy = treu
+	performance = { cache = { enabled = true } }, -- キャッシュ有効化
+}
+
 -- plugin configuration (Based on migration from packer.nvim) --
 -- https://coralpink.github.io/commentary/outro/lazy-migration-guide.html
 local plugins = {
@@ -9,6 +14,7 @@ local plugins = {
 	-- -- -- -- -- -- --
 	{
 		"dstein64/nvim-scrollview",
+		lazy = false,
 		init = function()
 			require("scrollview").setup({
 				excluded_filetypes = { "nerdtree" },
@@ -29,6 +35,7 @@ local plugins = {
         メモ: プラグインマネージャーは関係ない `:TSInstallInfo`
         ]]
 		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
 		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
@@ -61,10 +68,10 @@ local plugins = {
 			})
 		end,
 	},
-	{ "wakatime/vim-wakatime" },
 	{
 		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
+		dependencies = { "williamboman/mason-lspconfig.nvim" },
 		opts = {
 			ensure_installed = {
 				"ast-grep",
@@ -92,21 +99,21 @@ local plugins = {
 	-- -- -- -- -- -- --
 	-- -- 遅延起動 -- --
 	-- -- -- -- -- -- --
-	{ "cohama/lexima.vim", lazy = true, keys = "i" },
-	{ "Eandrju/cellular-automaton.nvim", lazy = true, cmd = "CellularAutomaton" },
+	{ "cohama/lexima.vim", keys = "i" },
+	{ "Eandrju/cellular-automaton.nvim", cmd = "CellularAutomaton" },
 	-- Eandrju/cellular-automaton.nvim: keys = "<leader>r",
-	{ "github/copilot.vim", lazy = true, build = ":Copilot setup", cmd = "Copilot" },
-	{ "mattn/vim-maketable", lazy = true, cmd = { "MakeTable", "UnmakeTable" } },
-	{ "neovim/nvim-lspconfig", lazy = true, keys = "i" },
-	{ "previm/previm", lazy = true, ft = "markdown" },
+	{ "github/copilot.vim", build = ":Copilot setup", cmd = "Copilot" },
+	{ "mattn/vim-maketable", cmd = { "MakeTable", "UnmakeTable" } },
+	{ "neovim/nvim-lspconfig", keys = "i" },
+	{ "previm/previm", ft = "markdown" },
 	-- previm/previm: dependencies = "tyru/open-browser.vim", -- wsl と相性悪し
-	{ "skanehira/translate.vim", lazy = true, cmd = "Translate" },
-	{ "tpope/vim-commentary", lazy = true, keys = { "gcc", "gc", "gcap" } },
-	{ "vim-jp/vimdoc-ja", lazy = true, keys = { "h", mode = "c" } },
+	{ "skanehira/translate.vim", cmd = "Translate" },
+	{ "tpope/vim-commentary", keys = { "gcc", "gc", "gcap" } },
+	{ "vim-jp/vimdoc-ja", keys = { "h", mode = "c" } },
+	{ "wakatime/vim-wakatime", keys = "i" },
 	{
 		--[[
 		"chomosuke/typst-preview.nvim",
-		lazy = true,
 		ft = "typst",
 		version = "0.1.*",
 		init = function()
@@ -122,7 +129,6 @@ local plugins = {
 	},
 	{
 		"mhartington/formatter.nvim",
-		lazy = true,
 		cmd = {
 			"Format",
 			"FormatWrite",
@@ -141,7 +147,6 @@ require("lazy").setup(plugins, opts)
 local no_used = {
 	{
 		"IogaMaster/neocord",
-		lazy = true,
 		event = "VeryLazy",
 		keys = { "<leader>d" },
 		init = function()
@@ -158,7 +163,6 @@ local no_used = {
 	},
 	{
 		"ray-x/go.nvim",
-		lazy = true,
 		dependencies = { -- optional packages
 			-- "ray-x/guihua.lua",
 			-- "neovim/nvim-lspconfig",
