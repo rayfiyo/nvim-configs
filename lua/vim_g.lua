@@ -1,6 +1,6 @@
--- https://zenn.dev/kawarimidoll/articles/8172a4c29a6653#%E6%A8%99%E6%BA%96%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%AE%E7%84%A1%E5%8A%B9%E5%8C%96
-
 local g = {
+	-- 高速化
+	-- https://zenn.dev/kawarimidoll/articles/8172a4c29a6653
 	did_install_default_menus = 1,
 	did_install_syntax_menu = 1,
 	did_indent_on = 1,
