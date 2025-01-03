@@ -1,4 +1,5 @@
 -- 公式ドキュメント: https://lazy.folke.io/spec
+-- require() は読み込みタイミングがその行になる（lazy が狙い通りに差動しないかも）
 -- disabled_plugins の設定は vim_g.lua に
 vim.loader.enable()
 local opts = {
@@ -187,7 +188,7 @@ local no_used = {
 -- 公式ドキュメント: https://lazy.folke.io/spec
 
 --[[ 説明
-init: nvim 起動時に常に実行 （つまり，lazy = false も設定される）
+init: 起動時に常に実行
     init = function() require("scrollview").setup{
         excluded_filetypes = {"nerdtree"},
     } end,

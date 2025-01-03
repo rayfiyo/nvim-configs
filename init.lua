@@ -7,7 +7,7 @@ require("plugs/lazy")
 
 require("plugs/scripts")
 require("plugs/formatter")
-require("plugs/lsp")
-
 require("keymaps/plugs")
+
+require("plugs/lsp")
 require("keymaps/lsp_attach")
