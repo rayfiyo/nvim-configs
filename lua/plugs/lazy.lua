@@ -15,31 +15,26 @@ build: プラグインがインストールまたは更新されたときに実�
 local opts = {
 	performance = {
 		rtp = {
-			disabled_plugins = {
-				-- コメントアウトすると enabled ( !disable になる)
-				"gzip",
-				"matchit",
-				"matchparen",
-				"netrwPlugin",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
+			disabled_plugins = { -- コメントアウトすると enabled ( !disable になる)
+				"gzip", -- 圧縮されたファイルの編集
+				"matchit", -- % キーの強化
+				"matchparen", -- 括弧系のハイライト
+				"netrwPlugin", -- ファイラ
+				"tarPlugin", -- プラグインインストール時に tar 解答？
+				"tohtml", -- vimdiff の HTML 化など
+				"tutor", -- 対話型のチュートリアル
+				"zipPlugin", -- プラグインインストール時に zip 解答？
 			},
 		},
 	},
 }
----
 
 -- plugin configuration (Based on migration from packer.nvim) --
 -- https://coralpink.github.io/commentary/outro/lazy-migration-guide.html
 local plugins = {
-	--------------------------------------------------------
-	----------------------- 通常起動 -----------------------
-	--------------------------------------------------------
-	{
-		"cohama/lexima.vim",
-	},
+	-- -- -- -- -- -- --
+	-- -- 通常起動 -- --
+	-- -- -- -- -- -- --
 	{
 		"dstein64/nvim-scrollview",
 		init = function()
@@ -55,31 +50,20 @@ local plugins = {
 		end,
 	},
 	{
-		-- 対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-		-- install: TSInstall bash c css dockerfile fish go html json json5 jsonc markdown lua vim
-		-- info:    :TSInstallInfo
-		-- 導入１: https://zenn.dev/duglaser/articles/c02d6a937a48df
-		-- 導入２: https://konnyakmannan.com/archives/neovim_treesitter_setup_on_windows11/
-		-- プラグインマネージャーは関係ない
-
+		--[[
+        対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+        導入１: https://zenn.dev/duglaser/articles/c02d6a937a48df
+		導入２: https://konnyakmannan.com/archives/neovim_treesitter_setup_on_windows11/
+        メモ: プラグインマネージャーは関係ない `:TSInstallInfo`
+        ]]
 		"nvim-treesitter/nvim-treesitter",
-
 		build = ":TSUpdate",
-
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				highlight = {
-					-- syntax highlightを有効にする
-					enable = true,
-
-					-- vモードは，デフォルトのシンタックスハイライト
-					additional_vim_regex_highlighting = true,
-				},
-				indent = {
-					enable = true,
-				},
-
+				highlight = { enable = true, additional_vim_regex_highlighting = true },
+				indent = { enable = true },
 				ensure_installed = {
+					"bash",
 					"bibtex",
 					"c",
 					"css",
@@ -89,7 +73,7 @@ local plugins = {
 					"go",
 					"gomod",
 					"gosum",
-					-- "html",
+					"html",
 					"json",
 					"json5",
 					"jsonc",
@@ -100,33 +84,13 @@ local plugins = {
 					"toml",
 					"typst",
 					"yaml",
+					"vim",
 				},
 			})
 		end,
 	},
-	{
-		"ray-x/go.nvim",
-		dependencies = {
-			-- optional packages
-			-- "ray-x/guihua.lua",
-			-- "neovim/nvim-lspconfig",
-			-- "nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("go").setup()
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", "gomod" },
-
-		-- if you need to install/update all binaries
-		build = ':lua require("go.install").update_all_sync()',
-	},
-	{
-		"vim-jp/vimdoc-ja",
-	},
-	{
-		"wakatime/vim-wakatime",
-	},
+	{ "vim-jp/vimdoc-ja" },
+	{ "wakatime/vim-wakatime" },
 	{
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
@@ -144,22 +108,29 @@ local plugins = {
 				"templ",
 				"tinymist",
 				"typescript-language-server",
-				-- "typst-lsp",
 				"typstfmt",
 				"xmlformatter",
 			},
 		},
 		init = function()
-			require("mason").setup({
-				PATH = "prepend", -- "skip" seems to cause the spawning error
-			})
+			-- "skip" はエラーを引き起こす
+			require("mason").setup({ PATH = "prepend" })
 		end,
-		-- MasonInstall ast-grep clang-format clangd gofumpt gopls prettierd stylua templ typst-lsp typstfmt xmlformatter
 	},
 
-	--------------------------------------------------------
-	----------------------- 遅延起動 -----------------------
-	--------------------------------------------------------
+	-- -- -- -- -- -- --
+	-- -- 遅延起動 -- --
+	-- -- -- -- -- -- --
+	{ "cohama/lexima.vim", lazy = true },
+	{ "Eandrju/cellular-automaton.nvim", lazy = true, cmd = "CellularAutomaton" },
+	-- Eandrju/cellular-automaton.nvim: keys = "<leader>r",
+	{ "github/copilot.vim", lazy = true, build = ":Copilot setup", cmd = "Copilot" },
+	{ "mattn/vim-maketable", lazy = true, cmd = { "MakeTable", "UnmakeTable" } },
+	{ "neovim/nvim-lspconfig", lazy = true },
+	{ "previm/previm", lazy = true, ft = "markdown" },
+	-- previm/previm: dependencies = "tyru/open-browser.vim", -- wsl と相性悪し
+	{ "skanehira/translate.vim", lazy = true, cmd = "Translate" },
+	{ "tpope/vim-commentary", lazy = true, keys = { "gcc", "gc", "gcap" } },
 	{
 		"chomosuke/typst-preview.nvim",
 		lazy = true,
@@ -176,45 +147,6 @@ local plugins = {
 		end,
 	},
 	{
-		"Eandrju/cellular-automaton.nvim",
-		lazy = true,
-		cmd = "CellularAutomaton",
-		--keys = "<leader>r",
-	},
-	{
-		"github/copilot.vim",
-		lazy = true,
-		build = ":Copilot setup",
-		cmd = "Copilot",
-	},
-	--[[
-  {
-    "IogaMaster/neocord",
-    lazy = true,
-    event = "VeryLazy",
-    keys = { "<leader>d" },
-    init = function()
-      require("neocord").setup({
-        -- https://github.com/IogaMaster/neocord?tab=readme-ov-file#lua
-        -- 無効化はスペース２つ
-        editing_text = "Editing now",
-        file_explorer_text = "Browsing now",
-        reading_text = "Reading now",
-        workspace_text = "🦕💭",
-        line_number_text = "Line %s out of %s",
-      })
-    end,
-  },
-    ]]
-	{
-		"mattn/vim-maketable",
-		lazy = true,
-		cmd = {
-			"MakeTable",
-			"UnmakeTable",
-		},
-	},
-	{
 		"mhartington/formatter.nvim",
 		lazy = true,
 		cmd = {
@@ -229,28 +161,45 @@ local plugins = {
 		end,
 	},
 	{
-		"neovim/nvim-lspconfig",
+		"ray-x/go.nvim",
 		lazy = true,
-	},
-	{
-		"previm/previm",
-		lazy = true,
-		ft = "markdown",
-		-- dependencies = "tyru/open-browser.vim", -- wsl と相性悪し
-	},
-	{
-		"skanehira/translate.vim",
-		lazy = true,
-		cmd = "Translate",
-	},
-	{
-		"tpope/vim-commentary",
-		lazy = true,
-		keys = { "gcc", "gc", "gcap" },
+		dependencies = {
+			-- optional packages
+			-- "ray-x/guihua.lua",
+			-- "neovim/nvim-lspconfig",
+			-- "nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("go").setup()
+		end,
+		event = { "CmdlineEnter" },
+		ft = { "go", "gomod" },
+		-- if you need to install/update all binaries
+		build = ':lua require("go.install").update_all_sync()',
 	},
 }
 
 require("lazy").setup(plugins, opts)
+
+local notes = {
+	{
+		"IogaMaster/neocord",
+		lazy = true,
+		event = "VeryLazy",
+		keys = { "<leader>d" },
+		init = function()
+			require("neocord").setup({
+				-- https://github.com/IogaMaster/neocord?tab=readme-ov-file#lua
+				-- 無効化はスペース２つ
+				editing_text = "Editing now",
+				file_explorer_text = "Browsing now",
+				reading_text = "Reading now",
+				workspace_text = "🦕💭",
+				line_number_text = "Line %s out of %s",
+			})
+		end,
+	},
+}
 
 -- https://github.com/folke/lazy.nvim#-plugin-spec
 --[[
