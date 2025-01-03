@@ -12,22 +12,7 @@ build: プラグインがインストールまたは更新されたときに実�
 
 -- defaults configuration --
 -- https://coralpink.github.io/commentary/outro/lazy.html
-local opts = {
-	performance = {
-		rtp = {
-			disabled_plugins = { -- コメントアウトすると enabled ( !disable になる)
-				"gzip", -- 圧縮されたファイルの編集
-				"matchit", -- % キーの強化
-				"matchparen", -- 括弧系のハイライト
-				"netrwPlugin", -- ファイラ
-				"tarPlugin", -- プラグインインストール時に tar 解答？
-				"tohtml", -- vimdiff の HTML 化など
-				"tutor", -- 対話型のチュートリアル
-				"zipPlugin", -- プラグインインストール時に zip 解答？
-			},
-		},
-	},
-}
+-- disabled_plugins の設定は speedup.lua に
 
 -- plugin configuration (Based on migration from packer.nvim) --
 -- https://coralpink.github.io/commentary/outro/lazy-migration-guide.html
@@ -35,6 +20,7 @@ local plugins = {
 	-- -- -- -- -- -- --
 	-- -- 通常起動 -- --
 	-- -- -- -- -- -- --
+	{ "cohama/lexima.vim", lazy = true },
 	{
 		"dstein64/nvim-scrollview",
 		init = function()
@@ -121,7 +107,6 @@ local plugins = {
 	-- -- -- -- -- -- --
 	-- -- 遅延起動 -- --
 	-- -- -- -- -- -- --
-	{ "cohama/lexima.vim", lazy = true },
 	{ "Eandrju/cellular-automaton.nvim", lazy = true, cmd = "CellularAutomaton" },
 	-- Eandrju/cellular-automaton.nvim: keys = "<leader>r",
 	{ "github/copilot.vim", lazy = true, build = ":Copilot setup", cmd = "Copilot" },
