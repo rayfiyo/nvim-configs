@@ -12,17 +12,6 @@ autocmd("BufWritePost", {
 	command = ":FormatWrite",
 })
 
--- williamboman/mason.nvim の ui 変更
-require("mason").setup({
-	ui = {
-		icons = {
-			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗",
-		},
-	},
-})
-
 -- tpope/vim-commentary が Typst でも動作するように設定
 autocmd("FileType", {
 	command = "",
