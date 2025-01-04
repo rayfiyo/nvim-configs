@@ -1,5 +1,4 @@
 -- 公式ドキュメント: https://lazy.folke.io/spec
--- require() は読み込みタイミングがその行になる（lazy が狙い通りに差動しないかも）
 -- disabled_plugins の設定は vim_g.lua に
 vim.loader.enable()
 local opts = {
@@ -30,7 +29,7 @@ local plugins = {
 	},
 	{
 		"mhartington/formatter.nvim",
-		lazy = false,
+		lazy = false, -- 別ファイルで require() しているので lazy = false
 		keys = "<leader>f",
 		cmd = { "Format", "FormatWrite" },
 		build = function()
@@ -40,11 +39,11 @@ local plugins = {
             ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/")
 		end,
 	},
-	{ "neovim/nvim-lspconfig", lazy = false, keys = "i" },
+	{ "neovim/nvim-lspconfig", lazy = false, keys = "i" }, -- 別ファイルで require()
 	{
 		"williamboman/mason.nvim",
 		lazy = false,
-		-- dependencies = {},
+		-- dependencies = { "williamboman/mason-lspconfig.nvim" }, -- 依存は遅延起動
 		opts = {
 			ensure_installed = {
 				"ast-grep",
@@ -198,7 +197,7 @@ config: プラグインのロード時に実行
 build: プラグインがインストールまたは更新されたときに実行
         文字列 は シェルコマンド
         先頭 : は Neovimコマンド
-lazy: event, keys, cmd, ft のいずれかで発火する遅延に
+lazy: event, keys, cmd, ft, require() のいずれかで発火する遅延に
 ]]
 
 --[[ usage
