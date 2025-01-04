@@ -44,7 +44,7 @@ local plugins = {
 	{
 		"williamboman/mason.nvim",
 		lazy = false,
-		dependencies = { "williamboman/mason-lspconfig.nvim" },
+		-- dependencies = {},
 		opts = {
 			ensure_installed = {
 				"ast-grep",
@@ -73,16 +73,15 @@ local plugins = {
 	-- -- 遅延起動 -- --
 	-- -- -- -- -- -- --
 	{ "cohama/lexima.vim", keys = "i" },
-	{ "Eandrju/cellular-automaton.nvim", cmd = "CellularAutomaton" },
-	-- Eandrju/cellular-automaton.nvim: keys = "<leader>r",
+	{ "Eandrju/cellular-automaton.nvim", cmd = "CellularAutomaton" }, -- "<leader>r",
 	{ "github/copilot.vim", build = ":Copilot setup", cmd = "Copilot" },
 	{ "mattn/vim-maketable", cmd = { "MakeTable", "UnmakeTable" } },
-	{ "previm/previm", ft = "markdown" },
-	-- previm/previm: dependencies = "tyru/open-browser.vim", -- wsl と相性悪し
+	{ "previm/previm", ft = "markdown" }, -- open-browser.vim 不採用（詳細: no_used）
 	{ "skanehira/translate.vim", cmd = "Translate" },
 	{ "tpope/vim-commentary", keys = { "gcc", "gc", "gcap" } },
 	{ "vim-jp/vimdoc-ja", keys = { "h", mode = "c" } },
 	{ "wakatime/vim-wakatime", keys = "i" },
+	{ "williamboman/mason-lspconfig.nvim" }, -- williamboman/mason.nvim の依存
 	{
 		--[[
         対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
@@ -168,6 +167,7 @@ local no_used = {
 			})
 		end,
 	},
+	{ "tyru/open-browser.vim" }, -- previm/previm の依存，wsl と相性が悪いので採用なし
 	{
 		"ray-x/go.nvim",
 		dependencies = { -- optional packages
@@ -223,7 +223,7 @@ lazy: event, keys, cmd, ft のいずれかで発火する遅延に
 vim コマンド
     cmd = {":avim", ":bstart"},
 
-依存
+依存（おそらく非推奨）
     dependencies = "repo",
 
 ファイルタイプ
