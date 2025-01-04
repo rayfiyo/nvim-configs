@@ -27,7 +27,7 @@ local plugins = {
 	{ "neovim/nvim-lspconfig", lazy = false, evnet = "InsertEnte" },
 	{
 		"williamboman/mason.nvim",
-		lazy = false,
+        lazy = false, -- 遅延させたほうが早い
 		-- dependencies = { "williamboman/mason-lspconfig.nvim" }, -- 依存は遅延起動
 		opts = {
 			ensure_installed = {
