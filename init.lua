@@ -6,7 +6,6 @@ require("vim_opt")
 -- [[
 require("init_lazy")
 require("plugs/lazy")
-require("plugs/scripts")
 require("keymaps/plugs")
 
 -- 内部で外部プラグインを require() している 
