@@ -26,7 +26,6 @@ local opt = {
 	incsearch = true, -- 文字を入力する度に検索
 
 	-- その他
-	clipboard = "unnamedplus", -- "+ と "* レジスタをクリップボードと同期
 	mouse = "a", -- すべてのモードでマウス操作を有効化
 	shell = "fish", -- デフォルトシェル
 	splitbelow = true, -- 水平分割の新規ウィンドウを現在の下にする (true)

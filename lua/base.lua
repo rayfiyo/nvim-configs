@@ -1,11 +1,20 @@
 -- "vim.opt.*" 以外の設定
 -- https://zenn.dev/hisasann/articles/neovim-settings-to-lua
 
--- ヤンクをクリップボードに対応
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+local autocmd = vim.api.nvim_create_autocmd
+
+-- 読み込みが遅いので autocmd で遅延
+autocmd("ModeChanged", {
+	once = true,
+	callback = function()
+		-- ヤンクをクリップボードに対応
+		vim.api.nvim_set_option("clipboard", "unnamedplus")
+	end,
+})
 
 -- VimScriptの文字コード（マルチバイト有効化）
-vim.scriptencoding = "utf-8"
+-- vim.opt と重複してそう
+-- vim.scriptencoding = "utf-8"
 
 -- undoの永続化
 if vim.fn.has("persistent_undo") == 1 then
@@ -14,7 +23,7 @@ if vim.fn.has("persistent_undo") == 1 then
 end
 
 -- 終了時のカーソル位置を保存
-vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+autocmd("BufReadPost", {
 	pattern = { "*" },
 	callback = function()
 		vim.api.nvim_exec('silent! normal! g`"zv', false)
