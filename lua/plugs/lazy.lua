@@ -5,6 +5,8 @@ local opts = {
 	defaults = { lazy = true }, -- デフォルトで lazy = treu
 	performance = { cache = { enabled = true } }, -- キャッシュ有効化
 }
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
 -- plugin configuration (Based on migration from packer.nvim) --
 -- https://coralpink.github.io/commentary/outro/lazy-migration-guide.html
@@ -23,11 +25,20 @@ local plugins = {
             cp ~/.config/nvim/lua/plugs/bkup_formatter/filetypes/*.lua\
             ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/")
 		end,
+		init = function()
+			-- mhartington/formatter.nvim の書き込み時に自動フォーマット
+			-- https://github.com/mhartington/formatter.nvim#format-after-save
+			augroup("__formatter__", { clear = true })
+			autocmd("BufWritePost", {
+				group = "__formatter__",
+				command = ":FormatWrite",
+			})
+		end,
 	},
-	{ "neovim/nvim-lspconfig", lazy = false, evnet = "InsertEnte" },
+	{ "neovim/nvim-lspconfig", lazy = false, evnet = "InsertEnte" }, -- 別で require()
 	{
 		"williamboman/mason.nvim",
-        lazy = false, -- 遅延させたほうが早い
+		lazy = false, -- 遅延させたほうが早い
 		-- dependencies = { "williamboman/mason-lspconfig.nvim" }, -- 依存は遅延起動
 		opts = {
 			ensure_installed = {
@@ -47,10 +58,6 @@ local plugins = {
 				"xmlformatter",
 			},
 		},
-		init = function()
-			-- "skip" はエラーを引き起こす
-			require("mason").setup({ PATH = "prepend" })
-		end,
 	},
 
 	-- -- -- -- -- -- --
@@ -60,25 +67,20 @@ local plugins = {
 	{ "Eandrju/cellular-automaton.nvim", cmd = "CellularAutomaton" }, -- "<leader>r",
 	{ "github/copilot.vim", build = ":Copilot setup", cmd = "Copilot" },
 	{ "mattn/vim-maketable", cmd = { "MakeTable", "UnmakeTable" } },
-	{ "previm/previm", cmd = "PrevimOpen" }, -- open-browser.vim 不採用（詳細: no_used）
 	{ "skanehira/translate.vim", cmd = "Translate" },
-	{ "tpope/vim-commentary", keys = { "gcc", "gc", "gcap" } },
-	{ "vim-jp/vimdoc-ja", keys = { "h", mode = "c" } },
 	{ "wakatime/vim-wakatime", event = "VeryLazy" },
 	{ "williamboman/mason-lspconfig.nvim" }, -- williamboman/mason.nvim の依存
 	{
 		"dstein64/nvim-scrollview",
 		event = "VeryLazy",
 		init = function()
-			require("scrollview").setup({
-				excluded_filetypes = { "nerdtree" },
-				current_only = true,
-				winblend = 100, -- 透過
-				base = "buffer",
-				column = 154,
-				signs_on_startup = { "all" },
-				diagnostics_severities = { vim.diagnostic.severity.ERROR },
-			})
+			vim.g.scrollview_excluded_filetypes = { "nerdtree" }
+			vim.g.scrollview_current_only = true
+			vim.g.scrollview_winblend = 100 -- 透過
+			vim.g.scrollview_base = "buffer"
+			vim.g.scrollview_column = 176
+			vim.g.scrollview_signs_on_startup = { "all" }
+			vim.g.scrollview_diagnostics_severities = { vim.diagnostic.severity.ERROR }
 		end,
 	},
 	{
@@ -129,6 +131,48 @@ local plugins = {
 					"vim",
 				},
 			})
+		end,
+	},
+	{
+		"previm/previm",
+		cmd = "PrevimOpen",
+		dependencies = {
+			-- "tyru/open-browser.vim" -- no_used に記載
+		},
+		init = function()
+			vim.g.previm_open_cmd = "vivaldi.exe"
+			vim.g.previm_wsl_mode = "1"
+
+			--[[
+            -- previm/previm ファイル開く度に立ち上がるのが意外と不便だったので廃止
+            -- autocmd BufRead,BufNewFile *.{text,txt,md} vim.opt.filetype=markdown
+			autocmd({ "BufRead", "BufNewFile" }, {
+				once = true,
+				pattern = { "*.text", "*.txt", "*.md" },
+				command = ":PrevimOpen",
+			})
+            ]]
+		end,
+	},
+	{
+		"tpope/vim-commentary",
+		keys = { "gcc", "gc", "gcap" },
+		init = function()
+			-- tpope/vim-commentary が Typst でも動作するように設定
+			autocmd("FileType", {
+				once = true,
+				pattern = "typst",
+				command = "",
+				vim.opt_local.commentstring:append("// %s"),
+			})
+		end,
+	},
+	{
+		"vim-jp/vimdoc-ja",
+		keys = { "h", mode = "c" },
+		init = function()
+			-- 日本語化プラグインの設定
+			vim.opt.helplang = ja
 		end,
 	},
 }
@@ -187,7 +231,7 @@ local no_used = {
 -- 公式ドキュメント: https://lazy.folke.io/spec
 
 --[[ 説明
-init: 起動時に常に実行
+init: （プラグイン？）起動時に常に実行， vim.g.* の設定に役立つ
     init = function() require("scrollview").setup{
         excluded_filetypes = {"nerdtree"},
     } end,
