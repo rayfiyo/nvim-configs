@@ -13,21 +13,6 @@ local plugins = {
 	-- -- 通常起動 -- --
 	-- -- -- -- -- -- --
 	{
-		"dstein64/nvim-scrollview",
-		lazy = false,
-		init = function()
-			require("scrollview").setup({
-				excluded_filetypes = { "nerdtree" },
-				current_only = true,
-				winblend = 100, -- 透過
-				base = "buffer",
-				column = 154,
-				signs_on_startup = { "all" },
-				diagnostics_severities = { vim.diagnostic.severity.ERROR },
-			})
-		end,
-	},
-	{
 		"mhartington/formatter.nvim",
 		lazy = false, -- 別ファイルで require() しているので lazy = false
 		keys = "<leader>f",
@@ -39,7 +24,7 @@ local plugins = {
             ~/.local/share/nvim/lazy/formatter.nvim/lua/formatter/filetypes/")
 		end,
 	},
-	{ "neovim/nvim-lspconfig", lazy = false, keys = "i" }, -- 別ファイルで require()
+	{ "neovim/nvim-lspconfig", lazy = false, evnet = "InsertEnte" },
 	{
 		"williamboman/mason.nvim",
 		lazy = false,
@@ -71,16 +56,31 @@ local plugins = {
 	-- -- -- -- -- -- --
 	-- -- 遅延起動 -- --
 	-- -- -- -- -- -- --
-	{ "cohama/lexima.vim", keys = "i" },
+	{ "cohama/lexima.vim", event = "InsertEnter" },
 	{ "Eandrju/cellular-automaton.nvim", cmd = "CellularAutomaton" }, -- "<leader>r",
 	{ "github/copilot.vim", build = ":Copilot setup", cmd = "Copilot" },
 	{ "mattn/vim-maketable", cmd = { "MakeTable", "UnmakeTable" } },
-	{ "previm/previm", ft = "markdown" }, -- open-browser.vim 不採用（詳細: no_used）
+	{ "previm/previm", cmd = "PrevimOpen" }, -- open-browser.vim 不採用（詳細: no_used）
 	{ "skanehira/translate.vim", cmd = "Translate" },
 	{ "tpope/vim-commentary", keys = { "gcc", "gc", "gcap" } },
 	{ "vim-jp/vimdoc-ja", keys = { "h", mode = "c" } },
-	{ "wakatime/vim-wakatime", keys = "i" },
+	{ "wakatime/vim-wakatime", event = "VeryLazy" },
 	{ "williamboman/mason-lspconfig.nvim" }, -- williamboman/mason.nvim の依存
+	{
+		"dstein64/nvim-scrollview",
+		event = "VeryLazy",
+		init = function()
+			require("scrollview").setup({
+				excluded_filetypes = { "nerdtree" },
+				current_only = true,
+				winblend = 100, -- 透過
+				base = "buffer",
+				column = 154,
+				signs_on_startup = { "all" },
+				diagnostics_severities = { vim.diagnostic.severity.ERROR },
+			})
+		end,
+	},
 	{
 		--[[
         対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
@@ -89,7 +89,7 @@ local plugins = {
         メモ: プラグインマネージャーは関係ない `:TSInstallInfo`
         ]]
 		"nvim-treesitter/nvim-treesitter",
-		keys = "i",
+		event = "VeryLazy",
 		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
@@ -177,7 +177,7 @@ local no_used = {
 		config = function()
 			require("go").setup()
 		end,
-		event = { "CmdlineEnter" }, -- これ起動遅くなるかも
+		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		-- if you need to install/update all binaries
 		build = ':lua require("go.install").update_all_sync()',
@@ -217,6 +217,8 @@ lazy: event, keys, cmd, ft, require() のいずれかで発火する遅延に
 
 イベント
     -- * "BufEnter" か "BufEnter *.lua" で指定
+    -- "VeryLazy" Neovim の起動後にアイドル状態で発火 lazy.nvim 独自
+    -- https://vim-jp.org/vimdoc-ja/autocmd.html
     event = {"FocusLost", "CursorHold"},
 
 vim コマンド
