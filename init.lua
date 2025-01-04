@@ -3,6 +3,7 @@ require("vim_g")
 require("vim_opt")
 
 -- 外部プラグインに依存
+-- [[
 require("init_lazy")
 require("plugs/lazy")
 require("plugs/scripts")
@@ -12,3 +13,4 @@ require("keymaps/plugs")
 require("plugs/formatter")
 require("plugs/lsp")
 require("keymaps/lsp_attach")
+-- ]]
