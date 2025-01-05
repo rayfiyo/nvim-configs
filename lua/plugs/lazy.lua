@@ -71,6 +71,21 @@ local plugins = {
 	{ "wakatime/vim-wakatime", event = "VeryLazy" },
 	{ "williamboman/mason-lspconfig.nvim" }, -- williamboman/mason.nvim の依存
 	{
+		"cohama/lexima.vim",
+		event = "InsertEnter",
+		config = function()
+			vim.fn["lexima#add_rule"]({
+				char = "（",
+				input_after = "）",
+			})
+			vim.fn["lexima#add_rule"]({
+				char = "）",
+				at = [[\%#）]],
+				leave = 1,
+			})
+		end,
+	},
+	{
 		"dstein64/nvim-scrollview",
 		event = "VeryLazy",
 		init = function()
@@ -231,7 +246,7 @@ local no_used = {
 -- 公式ドキュメント: https://lazy.folke.io/spec
 
 --[[ 説明
-init: （プラグイン？）起動時に常に実行， vim.g.* の設定に役立つ
+init: （neovim の？）起動時に常に実行， vim.g.* の設定に役立つ
     init = function() require("scrollview").setup{
         excluded_filetypes = {"nerdtree"},
     } end,
