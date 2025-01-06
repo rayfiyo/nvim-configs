@@ -150,7 +150,7 @@ local plugins = {
 	},
 	{
 		"previm/previm",
-		cmd = "PrevimOpen",
+		ft = "markdown", -- key や cmd だとうまく動作しない
 		dependencies = {
 			-- "tyru/open-browser.vim" -- no_used に記載
 		},
