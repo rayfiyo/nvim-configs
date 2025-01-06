@@ -1,3 +1,6 @@
+-- 0 で有効化（デフォルト）
+-- 1 で無効化
+
 local g = {
 	-- 高速化
 	-- https://zenn.dev/kawarimidoll/articles/8172a4c29a6653
@@ -13,7 +16,7 @@ local g = {
 	loaded_gzip = 1, -- Gzip圧縮ファイルの編集
 	loaded_man = 1, -- マニュアルページを表示する
 	loaded_matchit = 1, -- % キーの強化
-	loaded_matchparen = 1, -- 括弧系のハイライト
+	loaded_matchparen = 0, -- 括弧系のハイライト
 	loaded_netrwPlugin = 1, -- ファイルブラウザ機能
 	loaded_remote_plugins = 1, -- リモートプラグイン（PythonやRubyのインターフェース）
 	loaded_shada_plugin = 1, -- セッションデータ管理用のプラグイン
