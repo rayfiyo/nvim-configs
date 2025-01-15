@@ -39,7 +39,7 @@ local plugins = {
 	{
 		"williamboman/mason.nvim",
 		lazy = false, -- 遅延させたほうが早い
-		-- dependencies = { "williamboman/mason-lspconfig.nvim" }, -- 依存は遅延起動
+		-- 依存され: "williamboman/mason-lspconfig.nvim"
 		opts = {
 			ensure_installed = {
 				"ast-grep",
@@ -69,7 +69,7 @@ local plugins = {
 	{ "mattn/vim-maketable", cmd = { "MakeTable", "UnmakeTable" } },
 	{ "skanehira/translate.vim", cmd = "Translate" },
 	{ "wakatime/vim-wakatime", event = "VeryLazy" },
-	{ "williamboman/mason-lspconfig.nvim" }, -- williamboman/mason.nvim の依存
+	{ "williamboman/mason-lspconfig.nvim" }, -- 依存先: williamboman/mason.nvim
 	{
 		"cohama/lexima.vim",
 		event = "InsertEnter",
@@ -82,6 +82,17 @@ local plugins = {
 				char = "）",
 				at = [[\%#）]],
 				leave = 1,
+			})
+		end,
+	},
+	{
+		"chomosuke/typst-preview.nvim",
+		ft = "typst",
+		init = function()
+			require("typst-preview").setup({
+				open_cmd = '"/mnt/c/Users/yorugo/AppData/Local/Vivaldi/Application/vivaldi.exe" %s',
+				-- open_cmd = '"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" %s',
+				-- follow_cursor = false,
 			})
 		end,
 	},
@@ -151,9 +162,6 @@ local plugins = {
 	{
 		"previm/previm",
 		ft = "markdown", -- key や cmd だとうまく動作しない
-		dependencies = {
-			-- "tyru/open-browser.vim" -- no_used に記載
-		},
 		init = function()
 			vim.g.previm_open_cmd = "vivaldi.exe"
 			vim.g.previm_wsl_mode = "1"
@@ -196,20 +204,6 @@ require("lazy").setup(plugins, opts)
 
 local no_used = {
 	{
-		"chomosuke/typst-preview.nvim",
-		ft = "typst",
-		version = "0.1.*",
-		init = function()
-			require("typst-preview").setup({
-				open_cmd = '"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" %s',
-				-- follow_cursor = false,
-			})
-		end,
-		build = function()
-			require("typst-preview").update()
-		end,
-	},
-	{
 		"IogaMaster/neocord",
 		event = "VeryLazy",
 		keys = { "<leader>d" },
@@ -228,7 +222,8 @@ local no_used = {
 	{ "tyru/open-browser.vim" }, -- previm/previm の依存，wsl と相性が悪いので採用なし
 	{
 		"ray-x/go.nvim",
-		dependencies = { -- optional packages
+		dependencies = {
+			-- optional packages, dependencies に記述は非推奨
 			-- "ray-x/guihua.lua",
 			-- "neovim/nvim-lspconfig",
 			-- "nvim-treesitter/nvim-treesitter",

@@ -29,16 +29,16 @@ map("n", "うう", "uu") -- 全角・半角間違い用
 map({ "n", "i" }, "<F2>", "<Esc>:w<CR>:!xsel -bi < %<CR>")
 map({ "n", "i" }, "<F6>", "<Esc>:w<CR>:!go test %<CR>")
 map({ "n", "i" }, "<F5>", function()
-	local current_filetype = vim.bo.filetype
-	if current_filetype == "c" then
+	-- 現在のファイルタイプ: vim.bo.filetype
+	if vim.bo.filetype == "c" then
 		vim.cmd("update")
 		vim.cmd("!gcc -lm % && echo : && ./a.out")
-	elseif current_filetype == "go" then
+	elseif vim.bo.filetype == "go" then
 		vim.cmd("update")
-		vim.cmd("!echo : && go run %")
-	elseif current_filetype == "typst" then
+		vim.cmd("!echo : && go run %s")
+	elseif vim.bo.filetype == "typst" then
 		vim.cmd("update")
-		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/ typst compile %")
+		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/ typst compile %s")
 	end
 end, { silent = true })
 -- map("i", "{", "{}<ESC>i") -- 閉じ｛括弧の入力
@@ -74,8 +74,18 @@ local opts = { noremap = true, silent = true }
 -- plugin 依存 --
 -----------------
 
--- chomosuke/typst-preview.nvim
-map({ "n", "v" }, "<leader>ot", "<cmd>TypstPreview<CR>")
+-- プレビュープラグインの起動
+map({ "n", "v" }, "<leader>o", function()
+	if vim.bo.filetype == "typst" then
+		-- chomosuke/typst-preview.nvim
+		vim.cmd("update")
+		vim.cmd("TypstPreview")
+	elseif vim.bo.filetype == "markdown" then
+		-- previm/previm
+		vim.cmd("update")
+		vim.cmd("PrevimOpen")
+	end
+end, { silent = true })
 
 -- Eandrju/cellular-automaton.nvim
 map({ "n", "v" }, "<leader>m", "<cmd>CellularAutomaton make_it_rain<CR>")
@@ -85,9 +95,6 @@ map({ "n", "v" }, "<leader>c", "<cmd>Copilot auth<CR>")
 
 -- mhartington/formatter.nvim
 -- map({ "n", "v" }, "<leader>f", "<cmd>Format<CR>")
-
--- previm/previm
-map({ "n", "v" }, "<leader>op", "<cmd>PrevimOpen<CR>")
 
 -- skanehira/translate.vim
 map({ "n", "v" }, "<leader>t", "<cmd>Translate<CR>")
