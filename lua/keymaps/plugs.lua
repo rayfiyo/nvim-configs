@@ -49,9 +49,10 @@ end, { silent = true })
 ---------
 -- LSP --
 ---------
-map("n", "<leader>e", vim.diagnostic.open_float, opts)
-map("n", "[d", vim.diagnostic.goto_prev, opts)
-map("n", "]d", vim.diagnostic.goto_next, opts)
+local lsp_opts = { noremap = true, silent = true }
+map("n", "<leader>e", vim.diagnostic.open_float, lsp_opts)
+map("n", "[d", vim.diagnostic.goto_prev, lsp_opts)
+map("n", "]d", vim.diagnostic.goto_next, lsp_opts)
 
 map("n", "<Leader>j", "<cmd>bnext<CR>") -- 次のバッファに移動
 map("n", "<Leader>k", "<cmd>bprev<CR>") -- 前のバッファに移動
@@ -68,7 +69,6 @@ map({ "n", "v" }, "<leader>f", function()
 		vim.cmd("Format")
 	end
 end, { silent = true })
-local opts = { noremap = true, silent = true }
 
 -----------------
 -- plugin 依存 --
