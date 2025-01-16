@@ -79,7 +79,7 @@ map({ "n", "v" }, "<leader>o", function()
 	if vim.bo.filetype == "typst" then
 		-- chomosuke/typst-preview.nvim
 		vim.cmd("update")
-		vim.cmd("TypstPreview")
+		vim.cmd("silent !pwsh.exe -c ./%:r.pdf >/dev/null 2>/dev/null")
 	elseif vim.bo.filetype == "markdown" then
 		-- previm/previm
 		vim.cmd("update")

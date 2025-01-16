@@ -86,17 +86,6 @@ local plugins = {
 		end,
 	},
 	{
-		"chomosuke/typst-preview.nvim",
-		ft = "typst",
-		init = function()
-			require("typst-preview").setup({
-				open_cmd = '"/mnt/c/Users/yorugo/AppData/Local/Vivaldi/Application/vivaldi.exe" %s',
-				-- open_cmd = '"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" %s',
-				-- follow_cursor = false,
-			})
-		end,
-	},
-	{
 		"dstein64/nvim-scrollview",
 		event = "VeryLazy",
 		init = function()
@@ -203,6 +192,17 @@ local plugins = {
 require("lazy").setup(plugins, opts)
 
 local no_used = {
+	{
+		"chomosuke/typst-preview.nvim",
+		ft = "typst",
+		init = function()
+			require("typst-preview").setup({
+				open_cmd = '"/mnt/c/Users/yorugo/AppData/Local/Vivaldi/Application/vivaldi.exe" %s',
+				-- open_cmd = '"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe" %s',
+				-- follow_cursor = false,
+			})
+		end,
+	},
 	{
 		"IogaMaster/neocord",
 		event = "VeryLazy",
