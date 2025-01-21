@@ -33,6 +33,7 @@ require("formatter").setup({
 		javascriptreact = { require("formatter.filetypes.javascriptreact").prettierd },
 		markdown = { require("formatter.filetypes.markdown").prettierd },
 		typescript = { require("formatter.filetypes.typescript").prettierd },
+		typescriptreact = { require("formatter.filetypes.typescript").prettierd },
 		vue = { require("formatter.filetypes.vue").prettierd },
 		yaml = { require("formatter.filetypes.yaml").prettierd },
 
