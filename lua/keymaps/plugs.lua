@@ -35,7 +35,7 @@ map({ "n", "i" }, "<F5>", function()
 		vim.cmd("!gcc -lm % && echo : && ./a.out")
 	elseif vim.bo.filetype == "go" then
 		vim.cmd("update")
-		vim.cmd("!echo : && go run %s")
+		javascriptreactvim.cmd("!echo : && go run %s")
 	elseif vim.bo.filetype == "typst" then
 		vim.cmd("update")
 		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/ typst compile %s")
@@ -60,12 +60,15 @@ map({ "i", "n" }, "<C-f>", "<C-x><C-o>") -- オムニ補完
 
 -- フォーマット（mhartington/formatter.nvim がなければ LSP）
 map({ "n", "v" }, "<leader>f", function()
+	-- ファイルタイプに応じてフォーマッタの切り替え
 	local config = require("formatter.config").values.filetype
-	local current_filetype = vim.bo.filetype
-	-- 現在のファイルタイプの formatter.config が存在しない（nil）か
-	if config[current_filetype] == nil then
+	if vim.bo.filetype == "javascriptreact" then
+		vim.cmd("Format")
+	elseif config[vim.bo.filetype] == nil then
+		-- 現在のファイルタイプの formatter.config が存在しない（nil）場合 LSP
 		vim.lsp.buf.format({ async = true })
 	else
+		-- それ以外は formatter.nvim
 		vim.cmd("Format")
 	end
 end, { silent = true })
