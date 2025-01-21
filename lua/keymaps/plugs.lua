@@ -60,15 +60,14 @@ map({ "i", "n" }, "<C-f>", "<C-x><C-o>") -- オムニ補完
 
 -- フォーマット（mhartington/formatter.nvim がなければ LSP）
 map({ "n", "v" }, "<leader>f", function()
-	-- ファイルタイプに応じてフォーマッタの切り替え
 	local config = require("formatter.config").values.filetype
-	if vim.bo.filetype == "javascriptreact" then
-		vim.cmd("Format")
-	elseif config[vim.bo.filetype] == nil then
-		-- 現在のファイルタイプの formatter.config が存在しない（nil）場合 LSP
+	-- ファイルタイプに応じてフォーマッタの切り替え
+	-- if vim.bo.filetype == "javascriptreact" then
+	-- vim.cmd("update")
+	-- 現在のファイルタイプの formatter.config が存在しない（nil）か
+	if config[vim.bo.filetype] == nil then
 		vim.lsp.buf.format({ async = true })
 	else
-		-- それ以外は formatter.nvim
 		vim.cmd("Format")
 	end
 end, { silent = true })
