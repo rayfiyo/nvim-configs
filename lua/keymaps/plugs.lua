@@ -35,10 +35,10 @@ map({ "n", "i" }, "<F5>", function()
 		vim.cmd("!gcc -lm % && echo : && ./a.out")
 	elseif vim.bo.filetype == "go" then
 		vim.cmd("update")
-		vim.cmd("!echo : && go run %s")
+		vim.cmd("!echo : && go run %")
 	elseif vim.bo.filetype == "typst" then
 		vim.cmd("update")
-		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/ typst compile %s")
+		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/ typst compile %")
 	end
 end, { silent = true })
 -- map("i", "{", "{}<ESC>i") -- 閉じ｛括弧の入力
