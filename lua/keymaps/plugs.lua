@@ -35,7 +35,7 @@ map({ "n", "i" }, "<F5>", function()
 		vim.cmd("!gcc -lm % && echo : && ./a.out")
 	elseif vim.bo.filetype == "go" then
 		vim.cmd("update")
-		javascriptreactvim.cmd("!echo : && go run %s")
+		vim.cmd("!echo : && go run %s")
 	elseif vim.bo.filetype == "typst" then
 		vim.cmd("update")
 		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/ typst compile %s")
