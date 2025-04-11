@@ -38,9 +38,9 @@ map({ "n", "i" }, "<F5>", function()
 end, { silent = true })
 map({ "i" }, "<C-b>", function()
 	if vim.bo.filetype == "typst" then
-		return "**<b>"
+		return "**<b><Left><Left><Left><Left>"
 	end
-end, { expr = true, silent = true })
+end, { expr = true, silent = true }) -- expr で返り値を入力
 -- map("i", "{", "{}<ESC>i") -- 閉じ｛括弧の入力
 -- map("i", "{<Enter>", "{}<ESC>i<CR><ESC><S-o>") -- 閉じ（括弧の入力
 -- map("i", "()", "()<ESC>i") -- 閉じ（括弧の入力
