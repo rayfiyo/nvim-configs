@@ -36,3 +36,11 @@ local opt = {
 for i, v in pairs(opt) do
 	vim.opt[i] = v
 end
+
+-- typst のタブ押下時のスペースを 2 つに
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typst",
+	callback = function()
+		vim.opt.shiftwidth = 2
+	end,
+})

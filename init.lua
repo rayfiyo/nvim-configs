@@ -4,7 +4,7 @@ require("vim_opt")
 require("keymaps/vanila")
 
 -- 外部プラグインに依存
--- [[
+-- --[[
 require("init_lazy")
 require("plugs/lazy")
 require("keymaps/plugin")
