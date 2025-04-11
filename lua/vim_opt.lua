@@ -37,9 +37,9 @@ for i, v in pairs(opt) do
 	vim.opt[i] = v
 end
 
--- typst のタブ押下時のスペースを 2 つに
+-- 一部のファイルで、タブ押下時のスペースを 2 つにする設定
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "typst",
+	pattern = { "typst", "markdown" },
 	callback = function()
 		vim.opt.shiftwidth = 2
 	end,
