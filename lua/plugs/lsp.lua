@@ -4,7 +4,6 @@
 
 local lsp = require("lspconfig")
 lsp.ast_grep.setup({}) -- プロジェクトルートに sgconfig.yml 必須
-lsp.arduino_language_server.setup({})
 lsp.clangd.setup({})
 lsp.gopls.setup({
 	settings = {
