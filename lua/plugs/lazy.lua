@@ -74,13 +74,24 @@ local plugins = {
 		"cohama/lexima.vim",
 		event = "InsertEnter",
 		config = function()
-			-- （） の設定
+			-- （）の設定
 			vim.fn["lexima#add_rule"]({
 				char = "（",
 				input_after = "）",
 			})
 			vim.fn["lexima#add_rule"]({
 				char = "）",
+				at = [[\%#）]],
+				leave = 1,
+			})
+
+            -- 「」の設定
+			vim.fn["lexima#add_rule"]({
+				char = "「",
+				input_after = "」",
+			})
+			vim.fn["lexima#add_rule"]({
+				char = "」",
 				at = [[\%#）]],
 				leave = 1,
 			})
