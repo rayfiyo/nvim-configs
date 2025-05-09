@@ -39,7 +39,7 @@ map({ "n", "i" }, "<F5>", function()
 		vim.cmd("!TYPST_FONT_PATHS=/usr/share/fonts/ typst compile %")
 	end
 end, { silent = true })
-map({ "i" }, "<C-b>", function()
+map({ "i" }, "<C-b>", function() -- Typst で青字のショートカット
 	if vim.bo.filetype == "typst" then
 		return "**<b><Left><Left><Left><Left>"
 	end
@@ -48,3 +48,5 @@ end, { expr = true, silent = true }) -- expr で返り値を入力
 -- map("i", "{<Enter>", "{}<ESC>i<CR><ESC><S-o>") -- 閉じ（括弧の入力
 -- map("i", "()", "()<ESC>i") -- 閉じ（括弧の入力
 -- map("i", "()<Enter>", "<ESC>i<CR><ESC><S-o>") -- 閉じ（括弧の入力
+
+-- タブのスペース数は vim_opt

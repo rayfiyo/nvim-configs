@@ -39,7 +39,7 @@ end
 
 -- 一部のファイルで、タブ押下時のスペースを 2 つにする設定
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "typst", "markdown" },
+	pattern = { "c", "typst", "markdown" },
 	callback = function()
 		vim.opt.shiftwidth = 2
 	end,
