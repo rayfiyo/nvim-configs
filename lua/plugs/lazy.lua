@@ -85,14 +85,14 @@ local plugins = {
 				leave = 1,
 			})
 
-            -- 「」の設定
+			-- 「」の設定
 			vim.fn["lexima#add_rule"]({
 				char = "「",
 				input_after = "」",
 			})
 			vim.fn["lexima#add_rule"]({
 				char = "」",
-				at = [[\%#）]],
+				at = [[\%#」]],
 				leave = 1,
 			})
 
@@ -100,6 +100,11 @@ local plugins = {
 			vim.fn["lexima#add_rule"]({
 				char = "$",
 				input_after = "$",
+			})
+			vim.fn["lexima#add_rule"]({
+				char = "$",
+				at = [[\%#\$]],
+				leave = 1,
 			})
 		end,
 	},
