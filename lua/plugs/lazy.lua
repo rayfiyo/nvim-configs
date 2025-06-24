@@ -122,6 +122,28 @@ local plugins = {
 		end,
 	},
 	{
+		"mfussenegger/nvim-lint",
+		-- 以下のイベントで自動読み込み
+		event = { "BufReadPost", "BufWritePost" },
+		config = function()
+			local lint = require("lint")
+
+			-- ファイルタイプ別のリンターを定義
+			lint.linters_by_ft = {
+				-- go = { "golangcilint" }, -- Go: golangci-lint
+				python = { "flake8" }, -- Python: flake8
+				-- javascript = { "eslint_d" }, -- JS: eslint_d
+			}
+
+			-- バッファを開いたとき／保存したときに自動で lint を実行
+			vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
+				callback = function()
+					lint.try_lint()
+				end,
+			})
+		end,
+	},
+	{
 		--[[
         対応言語: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
         導入１: https://zenn.dev/duglaser/articles/c02d6a937a48df

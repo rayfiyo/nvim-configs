@@ -12,7 +12,19 @@ lsp.gopls.setup({
 		},
 	},
 })
-lsp.pylsp.setup({})
+lsp.pylsp.setup({
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = { enabled = false },
+				flake8 = { enabled = true },
+				-- enabled = true,
+				-- maxLineLength = 88,
+				-- ignore = { "E203" },
+			},
+		},
+	},
+})
 lsp.templ.setup({})
 lsp.ts_ls.setup({})
 lsp.tinymist.setup({
