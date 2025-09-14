@@ -2,39 +2,44 @@
 -- ~/.local/share/nvim/lazy/nvim-lspconfig/lua/lspconfig/configs
 -- フォーマッタは mhartington/formatter.nvim を使用（LSP不使用）
 
-local lsp = require("lspconfig")
-lsp.ast_grep.setup({}) -- プロジェクトルートに sgconfig.yml 必須
-lsp.clangd.setup({})
-lsp.gopls.setup({
+vim.lsp.enable({
+	"ast_grep", -- プロジェクトルートに sgconfig.yml 必須
+	"clangd",
+	"golangci_lint_ls",
+	"gopls",
+	"pylsp",
+	"templ",
+	"ts_ls",
+	"tinymist",
+})
+
+local config = vim.lsp.config
+
+config("gopls", {
 	settings = {
-		gopls = {
-			staticcheck = true,
-		},
+		staticcheck = false,
 	},
 })
-lsp.pylsp.setup({
+
+config("pylsp", {
 	settings = {
 		pylsp = {
 			plugins = {
-				pycodestyle = { enabled = false },
 				flake8 = { enabled = true },
-				-- enabled = true,
-				-- maxLineLength = 88,
-				-- ignore = { "E203" },
 			},
 		},
 	},
 })
-lsp.templ.setup({})
-lsp.ts_ls.setup({})
-lsp.tinymist.setup({
+
+config("tinymist", {
 	settings = {
 		exportPdf = "onType",
 		fontPaths = "/usr/share/fonts/",
 	},
 })
+
 --[[
-lsp.typst_lsp.setup({
+lsp.typst_lsp.config({
 	settings = {
 		exportPdf = "onType", -- Choose onType, onSave or never.
 		-- serverPath = "" -- Normally, there is no need to uncomment it.
