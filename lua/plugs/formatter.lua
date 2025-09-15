@@ -56,10 +56,10 @@ require("formatter").setup({
 				}
 			end,
 		},
-		typst = { -- typstfmt
+		typst = { -- typstyle
 			function()
 				return {
-					exe = "typstfmt",
+					exe = "typstyle",
 					stdin = true,
 				}
 			end,
