@@ -17,7 +17,15 @@ local config = vim.lsp.config
 
 config("gopls", {
 	settings = {
-		staticcheck = false,
+		gopls = {
+			-- Linter は golangci_lint_ls を用いるため重複を防止
+			staticcheck = false, -- gopls 経由の Staticcheck を止める
+			analyses = {
+				printf = false, -- go vet の printf 系を止める
+				shadow = false, -- 影変数
+				unusedparams = false, -- 未使用パラメータ
+			},
+		},
 	},
 })
 
@@ -33,8 +41,10 @@ config("pylsp", {
 
 config("tinymist", {
 	settings = {
-		exportPdf = "onType",
-		fontPaths = "/usr/share/fonts/",
+		tinymist = {
+			exportPdf = "onType",
+			fontPaths = "/usr/share/fonts/",
+		},
 	},
 })
 
