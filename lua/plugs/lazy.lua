@@ -122,6 +122,7 @@ local plugins = {
 		end,
 	},
 	{
+		--[[
 		"mfussenegger/nvim-lint",
 		-- 以下のイベントで自動読み込み
 		event = { "BufReadPost", "BufWritePost" },
@@ -129,9 +130,10 @@ local plugins = {
 			local lint = require("lint")
 
 			-- ファイルタイプ別のリンターを定義
+			-- LSP と競合するので使わない
 			lint.linters_by_ft = {
 				-- go = { "golangcilint" }, -- Go: golangci-lint
-				python = { "flake8" }, -- Python: flake8
+				-- python = { "flake8" }, -- Python: flake8
 				-- javascript = { "eslint_d" }, -- JS: eslint_d
 			}
 
@@ -142,6 +144,7 @@ local plugins = {
 				end,
 			})
 		end,
+        ]]
 	},
 	{
 		--[[
