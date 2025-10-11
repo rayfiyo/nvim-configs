@@ -42,10 +42,10 @@ config("pylsp", {
 
 config("tinymist", {
 	settings = {
-		tinymist = {
-			exportPdf = "onType",
-			fontPaths = "/usr/share/fonts/",
-		},
+		exportPdf = "onType",
+		formatterMode = "typstyle",
+		semanticTokens = "disable",
+		fontPaths = "/usr/share/fonts/",
 	},
 })
 
