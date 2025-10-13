@@ -15,6 +15,11 @@ local plugins = {
 	-- -- 通常起動 -- --
 	-- -- -- -- -- -- --
 	{
+		"mason-org/mason.nvim",
+		-- 依存され: "mason-org/mason-lspconfig.nvim"
+		lazy = false, -- 遅延ありより、遅延なしで依存されたほうが早い
+	},
+	{
 		"mhartington/formatter.nvim",
 		lazy = false, -- 別ファイルで require() しているので lazy = false
 		keys = "<leader>f",
@@ -36,29 +41,6 @@ local plugins = {
 		end,
 	},
 	{ "neovim/nvim-lspconfig", lazy = false, evnet = "InsertEnte" }, -- 別で require()
-	{
-		"williamboman/mason.nvim",
-		lazy = false, -- 遅延させたほうが早い
-		-- 依存され: "williamboman/mason-lspconfig.nvim"
-		opts = {
-			ensure_installed = {
-				"ast-grep",
-				"black",
-				"clang-format",
-				"clangd",
-				"gofumpt",
-				"gopls",
-				"prettierd",
-				"python-lsp-server",
-				"stylua",
-				"templ",
-				"tinymist",
-				"typescript-language-server",
-				"typstfmt",
-				"xmlformatter",
-			},
-		},
-	},
 
 	-- -- -- -- -- -- --
 	-- -- 遅延起動 -- --
@@ -69,7 +51,6 @@ local plugins = {
 	{ "mattn/vim-maketable", cmd = { "MakeTable", "UnmakeTable" } },
 	{ "skanehira/translate.vim", cmd = "Translate" },
 	{ "wakatime/vim-wakatime", event = "VeryLazy" },
-	{ "williamboman/mason-lspconfig.nvim" }, -- 依存先: williamboman/mason.nvim
 	{
 		"cohama/lexima.vim",
 		event = "InsertEnter",
@@ -120,6 +101,28 @@ local plugins = {
 			vim.g.scrollview_signs_on_startup = { "all" }
 			vim.g.scrollview_diagnostics_severities = { vim.diagnostic.severity.ERROR }
 		end,
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		-- 依存先: mason-org/mason.nvim
+		opts = {
+			ensure_installed = {
+				"ast-grep",
+				"black",
+				"clang-format",
+				"clangd",
+				"gofumpt",
+				"gopls",
+				"prettierd",
+				"python-lsp-server",
+				"stylua",
+				"templ",
+				"tinymist",
+				"typescript-language-server",
+				"typstfmt",
+				"xmlformatter",
+			},
+		},
 	},
 	{
 		--[[
