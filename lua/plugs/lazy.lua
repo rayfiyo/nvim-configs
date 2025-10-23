@@ -17,6 +17,33 @@ local plugins = {
 	{
 		"mason-org/mason.nvim",
 		lazy = false, -- 依存され: "mason-org/mason-lspconfig.nvim"
+		build = function()
+			vim.cmd("MasonUpdate") -- レジストリ更新
+
+			local install_list = {
+				"ast-grep",
+				"black",
+				"clang-format",
+				"clangd",
+				"gofumpt",
+				"golangci-lint",
+				"golangci-lint-langserver",
+				"gopls",
+				"intelephense",
+				"prettierd",
+				"python-lsp-server",
+				"stylua",
+				"templ",
+				"tinymist",
+				"ts-standard",
+				"typescript-language-server",
+				"typstyle",
+				"xmlformatter",
+			}
+			for _, tool in ipairs(tools) do
+				vim.cmd("MasonInstall " .. install_list)
+			end
+		end,
 	},
 	{
 		"mhartington/formatter.nvim",
@@ -103,29 +130,6 @@ local plugins = {
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = {
-				"ast-grep",
-				"black",
-				"clang-format",
-				"clangd",
-				"gofumpt",
-				"golangci-lint",
-				"golangci-lint-langserver",
-				"gopls",
-                "intelephense",
-				"prettierd",
-				"python-lsp-server",
-				"stylua",
-				"templ",
-				"tinymist",
-				"ts-standard",
-				"typescript-language-server",
-				"typstyle",
-				"xmlformatter",
-			},
-		},
-
 		-- 依存先: mason-org/mason.nvim
 		dependencies = { "mason-org/mason.nvim", opts = {} },
 	},
