@@ -113,6 +113,7 @@ local plugins = {
 				"golangci-lint",
 				"golangci-lint-langserver",
 				"gopls",
+                "intelephense",
 				"prettierd",
 				"python-lsp-server",
 				"stylua",

@@ -22,12 +22,14 @@ config("gopls", {
 			staticcheck = false, -- gopls 経由の Staticcheck を止める
 			analyses = {
 				printf = false, -- go vet の printf 系を止める
-				shadow = false, -- 影変数
-				unusedparams = false, -- 未使用パラメータ
+				shadow = true, -- 影変数
+				unusedparams = true, -- 未使用パラメータ
 			},
 		},
 	},
 })
+
+config("intelephense", {})
 
 config("pylsp", {
 	settings = {
