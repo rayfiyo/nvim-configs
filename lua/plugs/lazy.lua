@@ -16,8 +16,7 @@ local plugins = {
 	-- -- -- -- -- -- --
 	{
 		"mason-org/mason.nvim",
-		-- 依存され: "mason-org/mason-lspconfig.nvim"
-		lazy = false, -- 遅延ありより、遅延なしで依存されたほうが早い
+		lazy = false, -- 依存され: "mason-org/mason-lspconfig.nvim"
 	},
 	{
 		"mhartington/formatter.nvim",
@@ -104,7 +103,6 @@ local plugins = {
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
-		-- 依存先: mason-org/mason.nvim
 		opts = {
 			ensure_installed = {
 				"ast-grep",
@@ -112,17 +110,23 @@ local plugins = {
 				"clang-format",
 				"clangd",
 				"gofumpt",
+				"golangci-lint",
+				"golangci-lint-langserver",
 				"gopls",
 				"prettierd",
 				"python-lsp-server",
 				"stylua",
 				"templ",
 				"tinymist",
+				"ts-standard",
 				"typescript-language-server",
-				"typstfmt",
+				"typstyle",
 				"xmlformatter",
 			},
 		},
+
+		-- 依存先: mason-org/mason.nvim
+		dependencies = { "mason-org/mason.nvim", opts = {} },
 	},
 	{
 		--[[
