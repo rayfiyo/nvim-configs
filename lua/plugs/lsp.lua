@@ -30,6 +30,13 @@ config("gopls", {
 	},
 })
 
+config("intelephense", {
+	init_options = {
+		storagePath = vim.loop.os_homedir() .. "/.cache/intelephense",
+		globalStoragePath = vim.loop.os_homedir() .. "/.cache/intelephense",
+	},
+})
+
 config("pylsp", {
 	settings = {
 		pylsp = {
