@@ -7,6 +7,7 @@ vim.lsp.enable({
 	"clangd",
 	"golangci_lint_ls",
 	"gopls",
+	"intelephense",
 	"pylsp",
 	"templ",
 	"ts_ls",
@@ -28,8 +29,6 @@ config("gopls", {
 		},
 	},
 })
-
-config("intelephense", {})
 
 config("pylsp", {
 	settings = {

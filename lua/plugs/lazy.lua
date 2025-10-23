@@ -18,31 +18,10 @@ local plugins = {
 		"mason-org/mason.nvim",
 		lazy = false, -- 依存され: "mason-org/mason-lspconfig.nvim"
 		build = function()
-			vim.cmd("MasonUpdate") -- レジストリ更新
-
-			local install_list = {
-				"ast-grep",
-				"black",
-				"clang-format",
-				"clangd",
-				"gofumpt",
-				"golangci-lint",
-				"golangci-lint-langserver",
-				"gopls",
-				"intelephense",
-				"prettierd",
-				"python-lsp-server",
-				"stylua",
-				"templ",
-				"tinymist",
-				"ts-standard",
-				"typescript-language-server",
-				"typstyle",
-				"xmlformatter",
-			}
-			for _, tool in ipairs(tools) do
-				vim.cmd("MasonInstall " .. install_list)
-			end
+			vim.cmd(":MasonUpdate")
+			vim.cmd(
+				":MasonInstall ast-grep black clang-format clangd gofumpt golangci-lint golangci-lint-langserver gopls intelephense prettierd python-lsp-server stylua templ tinymist ts-standard typescript-language-server typstyle xmlformatter"
+			)
 		end,
 	},
 	{
