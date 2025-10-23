@@ -31,6 +31,8 @@ local opt = {
 	shell = "fish", -- デフォルトシェル
 	splitbelow = true, -- 水平分割の新規ウィンドウを現在の下にする (true)
 	splitright = false, -- 垂直分割の新規ウィンドウを現在の左にする (false)
+
+    shell = "/bin/bash",
 }
 
 for i, v in pairs(opt) do
