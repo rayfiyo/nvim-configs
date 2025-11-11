@@ -35,6 +35,16 @@ config("intelephense", {
 		storagePath = vim.loop.os_homedir() .. "/.cache/intelephense",
 		globalStoragePath = vim.loop.os_homedir() .. "/.cache/intelephense",
 	},
+	settings = {
+		intelephense = {
+			telemetry = { enabled = false },
+			environment = {
+				includePaths = {
+					vim.loop.os_homedir() .. "/.config/composer/vendor/php-stubs/wordpress-stubs",
+				},
+			},
+		},
+	},
 })
 
 config("pylsp", {
