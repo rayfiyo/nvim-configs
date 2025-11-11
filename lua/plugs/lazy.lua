@@ -45,7 +45,11 @@ local plugins = {
 			})
 		end,
 	},
-	{ "neovim/nvim-lspconfig", lazy = false, evnet = "InsertEnte" }, -- 別で require()
+	{
+		"neovim/nvim-lspconfig",
+		lazy = false, -- 別で require() しているから
+		evnet = { "InsertEnte", "BufReadPre", "BufNewFile" },
+	},
 
 	-- -- -- -- -- -- --
 	-- -- 遅延起動 -- --
