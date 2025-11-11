@@ -15,6 +15,7 @@ vim.lsp.enable({
 })
 
 local config = vim.lsp.config
+local util = require("lspconfig.util")
 
 config("gopls", {
 	settings = {
@@ -31,14 +32,15 @@ config("gopls", {
 })
 
 config("intelephense", {
+	root_dir = util.root_pattern("wp-config.php", "composer.json"),
 	init_options = {
 		storagePath = vim.loop.os_homedir() .. "/.cache/intelephense",
 		globalStoragePath = vim.loop.os_homedir() .. "/.cache/intelephense",
 	},
 	settings = {
 		intelephense = {
-			telemetry = { enabled = false },
 			environment = {
+				stubs = { "wordpress" },
 				includePaths = {
 					vim.loop.os_homedir() .. "/.config/composer/vendor/php-stubs/wordpress-stubs",
 				},
